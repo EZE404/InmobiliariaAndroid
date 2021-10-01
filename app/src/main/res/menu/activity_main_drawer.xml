@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_map"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_user"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_real_estates"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/menu_real_estates" />
+        <item
+            android:id="@+id/nav_tenants"
+            android:icon="@drawable/ic_menu_tenants"
+            android:title="@string/menu_tenants" />
+        <item
+            android:id="@+id/nav_contracts"
+            android:icon="@drawable/ic_menu_contracts"
+            android:title="@string/menu_contracts" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_logout"
+            android:title="@string/menu_logout" />
+    </group>
+</menu>

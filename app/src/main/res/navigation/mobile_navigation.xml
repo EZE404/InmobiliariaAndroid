@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.albornoz.inmobiliariaandroid.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.albornoz.inmobiliariaandroid.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_real_estates"
+        android:name="com.albornoz.inmobiliariaandroid.ui.realestates.RealEstatesFragment"
+        android:label="@string/menu_real_estates"
+        tools:layout="@layout/fragment_real_estates" />
+    <fragment
+        android:id="@+id/nav_tenants"
+        android:name="com.albornoz.inmobiliariaandroid.ui.tenants.TenantsFragment"
+        android:label="@string/menu_tenants"
+        tools:layout="@layout/fragment_tenants" />
+    <fragment
+        android:id="@+id/nav_contracts"
+        android:name="com.albornoz.inmobiliariaandroid.ui.contracts.ContractsFragment"
+        android:label="@string/menu_contracts"
+        tools:layout="@layout/fragment_contracts" />
+</navigation>
