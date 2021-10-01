@@ -19,7 +19,11 @@
         android:id="@+id/nav_real_estates"
         android:name="com.albornoz.inmobiliariaandroid.ui.realestates.RealEstatesFragment"
         android:label="@string/menu_real_estates"
-        tools:layout="@layout/fragment_real_estates" />
+        tools:layout="@layout/fragment_real_estates" >
+        <action
+            android:id="@+id/action_nav_real_estates_to_realEstateDetailsFragment"
+            app:destination="@id/realEstateDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_tenants"
         android:name="com.albornoz.inmobiliariaandroid.ui.tenants.TenantsFragment"
@@ -30,4 +34,12 @@
         android:name="com.albornoz.inmobiliariaandroid.ui.contracts.ContractsFragment"
         android:label="@string/menu_contracts"
         tools:layout="@layout/fragment_contracts" />
+    <fragment
+        android:id="@+id/realEstateDetailsFragment"
+        android:name="com.albornoz.inmobiliariaandroid.ui.realestates.RealEstateDetailsFragment"
+        android:label="RealEstateDetailsFragment" >
+        <action
+            android:id="@+id/action_realEstateDetailsFragment_to_nav_real_estates"
+            app:destination="@id/nav_real_estates" />
+    </fragment>
 </navigation>
