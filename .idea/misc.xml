@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/fragment_contract_details.xml" value="0.1" />
+        <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/fragment_contracts.xml" value="0.21779425393883226" />
         <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/fragment_profile.xml" value="0.494949494949495" />
         <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/fragment_real_estate_details.xml" value="0.2476310802274163" />
         <entry key="..\:/Users/Ezequiel/OneDrive/AndroidStudioProjects/InmobiliariaAndroid/app/src/main/res/layout/fragment_real_estates.xml" value="0.2476310802274163" />
