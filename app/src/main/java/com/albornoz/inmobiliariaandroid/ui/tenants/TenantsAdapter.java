@@ -1,8 +1,6 @@
-package com.albornoz.inmobiliariaandroid.ui.realestates;
-
+package com.albornoz.inmobiliariaandroid.ui.tenants;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
+import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 
-public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.MiViewHolder> {
+public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHolder> {
 
     private LayoutInflater layoutInflater;
     private Context context;
     private List<Inmueble> inmuebles;
     private View root;
+    private ApiClient api;
 
-    public RealEstatesAdapter(
+    public TenantsAdapter(
             View root,
             List<Inmueble> inmuebles
     ) {
@@ -37,21 +38,23 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
         this.layoutInflater = LayoutInflater.from(root.getContext());
         this.context = root.getContext();
         this.inmuebles = inmuebles;
+        this.api = ApiClient.getApi();
     }
 
     @NonNull
     @Override // Referenciar a la vista item_movie y pasarla a la clase MiViewHolder
-    public MiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TenantsAdapter.MiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.item_real_estate, parent, false);
-        return new MiViewHolder(view);
+        return new TenantsAdapter.MiViewHolder(view);
     }
 
     @Override // Se ejecuta por cada movie de la lista
-    public void onBindViewHolder(@NonNull MiViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TenantsAdapter.MiViewHolder holder, int position) {
         Inmueble i = inmuebles.get(position);
         holder.tvAddress.setText(i.getDireccion());
         //holder.tvDetails.setText(String.valueOf(i.getPrecio()));
-        holder.tvDetails.setText("$"+i.getPrecio());
+        //holder.tvDetails.setText("$"+i.getPrecio());
+        holder.tvDetails.setText(api.obtenerInquilino(i).getNombre()+" "+api.obtenerInquilino(i).getApellido());
         Glide.with(root.getContext())
                 .load(i.getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -59,12 +62,9 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
         holder.cvRealEstate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context, RealEstateDetailsFragment.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("realEstate", i);
-                //intent.putExtra("bundle", bundle);
-                //context.startActivity(intent);
-                Navigation.findNavController(root).navigate(R.id.realEstateDetailsFragment, bundle);
+                Navigation.findNavController(root).navigate(R.id.tenantDetailsFragment, bundle); // TODO: CAMBIAR A R.id.tenantDetailsFragment
             }
         });
     }
