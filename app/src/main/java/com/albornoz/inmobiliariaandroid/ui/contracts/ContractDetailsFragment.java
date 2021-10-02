@@ -48,6 +48,13 @@ public class ContractDetailsFragment extends Fragment {
             }
         });
 
+        binding.btPagos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cViewModel.openPagos(root);
+            }
+        });
+
         cViewModel.setContrato(getArguments());
         return root;
     }

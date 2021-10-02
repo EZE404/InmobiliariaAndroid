@@ -46,11 +46,11 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
     @Override // Se ejecuta por cada movie de la lista
     public void onBindViewHolder(@NonNull PagosAdapter.MiViewHolder holder, int position) {
         Pago p = pagos.get(position);
-        holder.tvId.setText(String.valueOf(p.getIdPago()));
-        holder.tvNum.setText(String.valueOf(p.getNumero()));
-        holder.tvIdContrato.setText(String.valueOf(p.getContrato().getIdContrato()));
-        holder.tvImporte.setText("$"+p.getImporte());
-        holder.tvFecha.setText(p.getFechaDePago());
+        holder.tvId.setText("Código de Pago: "+p.getIdPago());
+        holder.tvNum.setText("Número de Pago: "+p.getNumero());
+        holder.tvIdContrato.setText("Código de Contrato: "+p.getContrato().getIdContrato());
+        holder.tvImporte.setText("Importe: $"+p.getImporte());
+        holder.tvFecha.setText("Fecha de Pago: "+p.getFechaDePago());
     }
 
     @Override // Retorna la cardinalidad de la lista de movies

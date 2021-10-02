@@ -29,6 +29,6 @@ public class PagosViewModel extends ViewModel {
     }
 
     public void setPagosMutable(Bundle b) {
-        this.pagosMutable.setValue(api.obtenerPagos((Contrato)b.getSerializable("contract")));
+        this.pagosMutable.setValue(api.obtenerPagos((Contrato)b.getSerializable("contrato")));
     }
 }

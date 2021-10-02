@@ -64,7 +64,7 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("realEstate", i);
-                Navigation.findNavController(root).navigate(R.id.tenantDetailsFragment, bundle); // TODO: CAMBIAR A R.id.tenantDetailsFragment
+                Navigation.findNavController(root).navigate(R.id.tenantDetailsFragment, bundle);
             }
         });
     }

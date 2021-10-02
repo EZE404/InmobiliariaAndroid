@@ -65,5 +65,17 @@
         <action
             android:id="@+id/action_contractDetailsFragment_to_nav_contracts"
             app:destination="@id/nav_contracts" />
+        <action
+            android:id="@+id/action_contractDetailsFragment_to_pagosFragment"
+            app:destination="@id/pagosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagosFragment"
+        android:name="com.albornoz.inmobiliariaandroid.ui.contracts.PagosFragment"
+        android:label="fragment_pagos"
+        tools:layout="@layout/fragment_pagos" >
+        <action
+            android:id="@+id/action_pagosFragment_to_contractDetailsFragment"
+            app:destination="@id/contractDetailsFragment" />
     </fragment>
 </navigation>
