@@ -53,4 +53,18 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         errorLogin = findViewById(R.id.textViewLoginError);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        editTextPass.setText("");
+        editTextEmail.setText("");
+        editTextEmail.requestFocus();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }

@@ -43,6 +43,11 @@
             app:destination="@id/contractDetailsFragment" />
     </fragment>
     <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.albornoz.inmobiliariaandroid.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
+    <fragment
         android:id="@+id/realEstateDetailsFragment"
         android:name="com.albornoz.inmobiliariaandroid.ui.realestates.RealEstateDetailsFragment"
         android:label="Detalles de Inmueble" >

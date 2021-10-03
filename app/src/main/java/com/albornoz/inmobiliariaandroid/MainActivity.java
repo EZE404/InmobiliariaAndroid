@@ -1,5 +1,8 @@
 package com.albornoz.inmobiliariaandroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -91,12 +94,27 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-/*
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finishAffinity();
+        //super.onBackPressed();
+        new AlertDialog.Builder(this)
+                .setTitle("Salir")
+                .setMessage("¿Desea salir de la aplicación?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity.this.finishAffinity();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 
- */
+
 }
