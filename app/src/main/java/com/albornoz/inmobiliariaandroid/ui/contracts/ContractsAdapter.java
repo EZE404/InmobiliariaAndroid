@@ -78,7 +78,6 @@ public class ContractsAdapter extends RecyclerView.Adapter<ContractsAdapter.MiVi
         private TextView tvDetails, tvAddress;
         private ImageView ivPhoto;
 
-
         public MiViewHolder(@NonNull View itemView) {
             super(itemView);
             cvRealEstate = itemView.findViewById(R.id.cvRealEstate);

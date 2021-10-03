@@ -52,8 +52,6 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
     public void onBindViewHolder(@NonNull TenantsAdapter.MiViewHolder holder, int position) {
         Inmueble i = inmuebles.get(position);
         holder.tvAddress.setText(i.getDireccion());
-        //holder.tvDetails.setText(String.valueOf(i.getPrecio()));
-        //holder.tvDetails.setText("$"+i.getPrecio());
         holder.tvDetails.setText(api.obtenerInquilino(i).getNombre()+" "+api.obtenerInquilino(i).getApellido());
         Glide.with(root.getContext())
                 .load(i.getImagen())
@@ -79,7 +77,6 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
         private CardView cvRealEstate;
         private TextView tvDetails, tvAddress;
         private ImageView ivPhoto;
-
 
         public MiViewHolder(@NonNull View itemView) {
             super(itemView);

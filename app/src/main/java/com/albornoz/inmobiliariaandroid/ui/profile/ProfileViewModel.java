@@ -21,7 +21,6 @@ public class ProfileViewModel extends ViewModel {
 
     public ProfileViewModel() {
         this.api = ApiClient.getApi();
-        //pMutableLiveData.setValue(api.obtenerUsuarioActual());
     }
 
     public void setCurrentUser() {
@@ -30,7 +29,6 @@ public class ProfileViewModel extends ViewModel {
 
     public LiveData<Propietario> getCurrentUser() {
         if (pMutableLiveData == null) {
-            //pMutableLiveData.setValue(api.obtenerUsuarioActual());
             pMutableLiveData = new MutableLiveData<>();
         }
         return pMutableLiveData;

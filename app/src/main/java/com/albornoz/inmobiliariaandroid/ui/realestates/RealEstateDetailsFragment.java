@@ -67,6 +67,4 @@ public class RealEstateDetailsFragment extends Fragment {
         rViewModel.setInmueble(getArguments());
         return root;
     }
-
-
 }

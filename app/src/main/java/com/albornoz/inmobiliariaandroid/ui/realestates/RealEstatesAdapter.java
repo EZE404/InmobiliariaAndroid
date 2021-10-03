@@ -50,7 +50,6 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
     public void onBindViewHolder(@NonNull MiViewHolder holder, int position) {
         Inmueble i = inmuebles.get(position);
         holder.tvAddress.setText(i.getDireccion());
-        //holder.tvDetails.setText(String.valueOf(i.getPrecio()));
         holder.tvDetails.setText("$"+i.getPrecio());
         Glide.with(root.getContext())
                 .load(i.getImagen())
@@ -59,11 +58,8 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
         holder.cvRealEstate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context, RealEstateDetailsFragment.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("realEstate", i);
-                //intent.putExtra("bundle", bundle);
-                //context.startActivity(intent);
                 Navigation.findNavController(root).navigate(R.id.realEstateDetailsFragment, bundle);
             }
         });
@@ -79,7 +75,6 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
         private CardView cvRealEstate;
         private TextView tvDetails, tvAddress;
         private ImageView ivPhoto;
-
 
         public MiViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,9 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.albornoz.inmobiliariaandroid.modelo.Propietario;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         getPermissions();
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
                 .create(LoginViewModel.class);
-
         viewModel.getErrorVisibility().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer visibility) {
@@ -110,17 +105,14 @@ public class LoginActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 100) {
-
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] != 0) {
                     Log.d("permisos", "onRequestPermissionsResult: Hubo un permiso denegado");
                     finishAffinity();
                 }
             }
-
             // realizar la tarea
             shakeInitialization();
-
         } else {
             Log.d("permisos", "onRequestPermissionsResult: requestCode distinto de 100");
             finishAffinity();
@@ -128,18 +120,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void shakeInitialization() {
-
         mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
-
             @Override
             public void onShake(int count) {
-
-                // TODO: Hacer algo cuando se detecte el agite del celular
-                //TextView tv = MainActivity.this.findViewById(R.id.textView);
-                //tv.setText(String.valueOf(count));
-                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "911"));
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "2664422515"));
                 LoginActivity.this.startActivity(i);
-
             }
         });
     }
