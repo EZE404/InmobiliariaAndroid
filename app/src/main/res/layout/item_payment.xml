@@ -18,31 +18,31 @@
 
         <TextView
             android:id="@+id/tvIdPago"
-            android:text="Código de Pago"
+            android:text="@string/pago_codigo_label"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tvNum"
-            android:text="Número de Pago"
+            android:text="@string/pago_num_label"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tvIdContrato"
-            android:text="Código de Contrato"
+            android:text="@string/contract_codigo_label"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tvImporte"
-            android:text="Importe"
+            android:text="@string/importe_label"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tvFecha"
-            android:text="Fecha de Pago"
+            android:text="@string/fecha_de_pago_label"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

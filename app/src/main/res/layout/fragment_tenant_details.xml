@@ -10,7 +10,7 @@
     android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         tools:context=".ui.tenants.TenantDetailsFragment"
@@ -23,8 +23,8 @@
             android:labelFor="@id/tvNombreApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre y Apellido"
-            android:textSize="22dp"
+            android:text="@string/nombre_y_apellido_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -36,17 +36,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Nombre y Apellido"
+            android:text="@string/nombre_y_apellido_label"
             android:justificationMode="inter_word"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelDni"
             android:labelFor="@id/tvDni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DNI"
-            android:textSize="22dp"
+            android:text="@string/dni_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -58,16 +58,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="DNI"
-            android:textSize="18dp" />
+            android:text="@string/dni_label"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelEmailAddress"
             android:labelFor="@id/tvEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail"
-            android:textSize="22dp"
+            android:text="@string/email_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="E-mail"
+            android:text="@string/email_label"
             android:textSize="18sp" />
 
         <TextView
@@ -87,8 +87,8 @@
             android:labelFor="@id/tvTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Teléfono"
-            android:textSize="22dp"
+            android:text="@string/tel_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Teléfono"
+            android:text="@string/tel_label"
             android:textSize="18sp" />
 
         <TextView
@@ -108,8 +108,8 @@
             android:labelFor="@id/tvTrabajo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lugar de Trabajo"
-            android:textSize="22dp"
+            android:text="@string/lugar_de_trabajo_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Lugar de Trabajo"
+            android:text="@string/lugar_de_trabajo_label"
             android:textSize="18sp" />
 
         <TextView
@@ -129,8 +129,8 @@
             android:labelFor="@id/tvNombreGarante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre del Garante"
-            android:textSize="22dp"
+            android:text="@string/nombre_del_garante_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Nombre del Garante"
+            android:text="@string/nombre_del_garante_label"
             android:textSize="18sp" />
 
         <TextView
@@ -150,8 +150,8 @@
             android:labelFor="@id/tvTelGarante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Teléfono del Garante"
-            android:textSize="22dp"
+            android:text="@string/tel_garante_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Teléfono del Garante"
+            android:text="@string/tel_garante_label"
             android:textSize="18sp" />
     </LinearLayout>
 </ScrollView>

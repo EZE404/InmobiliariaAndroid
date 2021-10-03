@@ -10,7 +10,7 @@
     android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         tools:context=".ui.realestates.RealEstateDetailsFragment"
@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginHorizontal="10dp"
-            android:text="Dirección"
-            android:textSize="26dp"
+            android:text="@string/direccion_label"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +45,8 @@
             android:labelFor="@id/tvPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Precio"
-            android:textSize="22dp"
+            android:text="@string/precio_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -58,17 +58,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Precio"
+            android:text="@string/precio_label"
             android:justificationMode="inter_word"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelTipo"
             android:labelFor="@id/tvTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tipo"
-            android:textSize="22dp"
+            android:text="@string/tipo_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -80,16 +80,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Tipo"
-            android:textSize="18dp" />
+            android:text="@string/tipo_label"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelUso"
             android:labelFor="@id/tvUso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Uso"
-            android:textSize="22dp"
+            android:text="@string/uso_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -101,70 +101,70 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Uso"
+            android:text="@string/uso_label"
             android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/labelAmbientes"
-                    android:labelFor="@id/tvAmbientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ambientes"
-                    android:textSize="22dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginHorizontal="8dp"/>
+        <TextView
+            android:id="@+id/labelAmbientes"
+            android:labelFor="@id/tvAmbientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ambientes_label"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="8dp"/>
 
-                <TextView
-                    android:id="@+id/tvAmbientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Ambientes"
-                    android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvAmbientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/ambientes_label"
+            android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/labelPropietario"
-                            android:labelFor="@id/tvPropietario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Propietario"
-                            android:textSize="22dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginHorizontal="8dp"/>
+        <TextView
+            android:id="@+id/labelPropietario"
+            android:labelFor="@id/tvPropietario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/propietario_label"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="8dp"/>
 
-                        <TextView
-                            android:id="@+id/tvPropietario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_marginTop="8dp"
-                            android:text="Propietario"
-                            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvPropietario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/propietario_label"
+            android:textSize="18sp" />
 
-                                <TextView
-                                    android:id="@+id/labelDisponible"
-                                    android:labelFor="@id/cbDisponible"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Disponibilidad"
-                                    android:textSize="22dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_marginHorizontal="8dp"/>
+        <TextView
+            android:id="@+id/labelDisponible"
+            android:labelFor="@id/cbDisponible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/disponibilidad_label"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="8dp"/>
 
-                                <CheckBox
-                                    android:id="@+id/cbDisponible"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="10dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="Disponible" />  <!-- -->
+        <CheckBox
+            android:id="@+id/cbDisponible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/disponibilidad_label" />
 
     </LinearLayout>
 </ScrollView>

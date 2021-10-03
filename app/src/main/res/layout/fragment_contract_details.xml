@@ -10,7 +10,7 @@
     android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         tools:context=".ui.contracts.ContractDetailsFragment"
@@ -23,8 +23,8 @@
             android:labelFor="@id/tvId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Código"
-            android:textSize="22dp"
+            android:text="@string/contract_codigo_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -36,17 +36,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Código"
+            android:text="@string/contract_codigo_label"
             android:justificationMode="inter_word"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelDesde"
             android:labelFor="@id/tvDesde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha de Inicio"
-            android:textSize="22dp"
+            android:text="@string/fecha_de_inicio_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -58,16 +58,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Fecha de Inicio"
-            android:textSize="18dp" />
+            android:text="@string/fecha_de_inicio_label"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/labelHasta"
             android:labelFor="@id/tvHasta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha de Fin"
-            android:textSize="22dp"
+            android:text="@string/fecha_de_fin_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Fecha de Fin"
+            android:text="@string/fecha_de_fin_label"
             android:textSize="18sp" />
 
         <TextView
@@ -87,8 +87,8 @@
             android:labelFor="@id/tvMonto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Monto de Alquiler"
-            android:textSize="22dp"
+            android:text="@string/monto_de_alquiler_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Monto de Alquiler"
+            android:text="@string/monto_de_alquiler_label"
             android:textSize="18sp" />
 
         <TextView
@@ -108,8 +108,8 @@
             android:labelFor="@id/tvInquilino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inquilino"
-            android:textSize="22dp"
+            android:text="@string/inquilino_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Inquilino"
+            android:text="@string/inquilino_label"
             android:textSize="18sp" />
 
         <TextView
@@ -129,8 +129,8 @@
             android:labelFor="@id/tvInmueble"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inmueble"
-            android:textSize="22dp"
+            android:text="@string/inmueble_label"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
@@ -142,13 +142,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="8dp"
-            android:text="Inmueble"
+            android:text="@string/inmueble_label"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/btPagos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pagos"/>
+            android:text="@string/pagos_label"/>
     </LinearLayout>
 </ScrollView>
