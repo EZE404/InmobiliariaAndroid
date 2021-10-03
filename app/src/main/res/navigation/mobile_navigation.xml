@@ -77,7 +77,7 @@
     <fragment
         android:id="@+id/pagosFragment"
         android:name="com.albornoz.inmobiliariaandroid.ui.contracts.PagosFragment"
-        android:label="fragment_pagos"
+        android:label="Pagos del Contrato"
         tools:layout="@layout/fragment_pagos" >
         <action
             android:id="@+id/action_pagosFragment_to_contractDetailsFragment"
