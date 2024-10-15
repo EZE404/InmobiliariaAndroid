@@ -4,13 +4,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,6 +26,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.albornoz.inmobiliariaandroid.databinding.ActivityMainBinding;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,13 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
         binding.appBarMain.fab.setVisibility(View.INVISIBLE);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -65,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setHeader(NavigationView navigationView) {
-        //####### Obtengo ApiClient ########
-        ApiClient api = ApiClient.getApi();
+
 
         //####### Completando el header con datos de sesión #########
         // Rescatar header de navigationView
@@ -75,11 +77,45 @@ public class MainActivity extends AppCompatActivity {
         ImageView avatar = header.findViewById(R.id.imageViewAvatar);
         TextView nombre = header.findViewById(R.id.textViewHeaderName);
         TextView email = header.findViewById(R.id.textViewHeaderEmail);
+
+        // Esto ya no va porque hay que traer el propietario de la api retrofit
+        //####### Obtengo ApiClient ########
+        //ApiClient api = ApiClient.getApi();
         // Rescato propietario logueado y seteo valores en las vistas
-        Propietario p = api.obtenerUsuarioActual();
+        /*Propietario p = api.obtenerUsuarioActual();
         avatar.setImageResource(p.getAvatar());
         nombre.setText(p.getNombre()+" "+p.getApellido());
-        email.setText(p.getEmail());
+        email.setText(p.getEmail());*/
+
+        //####### Completando el header con datos de sesión #########
+        ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(this);
+        Call<Propietario> callPropietario = service.getPropietario();
+
+        callPropietario.enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Obtenemos el propietario exitosamente
+                    Propietario p = response.body();
+                    // Aquí puedes manejar lo que ocurre después de obtener el propietario
+                    // Por ejemplo, actualizar la UI o guardar los datos en el ViewModel
+                    Log.d("getPropietario", "onResponse: " + p);
+                    nombre.setText(p.getNombre() + " " + p.getApellido());
+                    email.setText(p.getEmail());
+                    Glide.with(getApplicationContext()) // No estoy seguro de este context
+                            .load(ApiClientRetrofit.getHost() + p.getAvatarUrl()) // Carga la URL de la imagen
+                            .into(avatar); // Coloca la imagen en el ImageView
+                } else {
+                    // Manejar el caso de que no se encuentre el propietario o error en la respuesta
+                    Log.d("LoginViewModel", "Error al obtener propietario: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable throwable) {
+                Toast.makeText(MainActivity.this, "Error al obtener propietario", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

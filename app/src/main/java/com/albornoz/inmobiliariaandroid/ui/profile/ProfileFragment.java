@@ -38,76 +38,42 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initialize() {
-        mViewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
-            @Override
-            public void onChanged(Propietario p) {
-                binding.editTextEmailAddress.setText(p.getEmail());
-                binding.editTextName.setText(p.getNombre());
-                binding.editTextLastName.setText(p.getApellido());
-                binding.editTextDni.setText(p.getDni().toString());
-                binding.editTextTel.setText(p.getTelefono());
-                binding.editTextPassword.setText(p.getContrasena());
-            }
+        mViewModel.getCurrentUser().observe(getViewLifecycleOwner(), p -> {
+            binding.editTextEmailAddress.setText(p.getEmail());
+            binding.editTextName.setText(p.getNombre());
+            binding.editTextLastName.setText(p.getApellido());
+            binding.editTextDni.setText(p.getDni().toString());
+            binding.editTextTel.setText(p.getTelefono());
+            binding.editTextPassword.setText(p.getContrasena());
         });
 
-        mViewModel.getButtonEditVisibility().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer visibility) {
-                binding.buttonEdit.setVisibility(visibility);
-            }
-        });
+        mViewModel.getButtonEditVisibility().observe(getViewLifecycleOwner(), visibility -> binding.buttonEdit.setVisibility(visibility));
 
-        mViewModel.getButtonSaveVisibility().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer visibility) {
-                binding.buttonSave.setVisibility(visibility);
-            }
-        });
+        mViewModel.getButtonSaveVisibility().observe(getViewLifecycleOwner(), visibility -> binding.buttonSave.setVisibility(visibility));
 
-        mViewModel.getEditEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean flag) {
-                binding.editTextEmailAddress.setEnabled(flag);
-                binding.editTextName.setEnabled(flag);
-                binding.editTextLastName.setEnabled(flag);
-                binding.editTextDni.setEnabled(flag);
-                binding.editTextTel.setEnabled(flag);
-                binding.editTextPassword.setEnabled(flag);
-            }
+        mViewModel.getEditEnabled().observe(getViewLifecycleOwner(), flag -> {
+            binding.editTextEmailAddress.setEnabled(flag);
+            binding.editTextName.setEnabled(flag);
+            binding.editTextLastName.setEnabled(flag);
+            binding.editTextDni.setEnabled(flag);
+            binding.editTextTel.setEnabled(flag);
+            binding.editTextPassword.setEnabled(flag);
         });
-        mViewModel.getMsgVisibility().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer visibility) {
-                binding.textViewMsg.setVisibility(visibility);
-            }
-        });
+        mViewModel.getMsgVisibility().observe(getViewLifecycleOwner(), visibility -> binding.textViewMsg.setVisibility(visibility));
 
-        mViewModel.getMsgMutableLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                binding.textViewMsg.setText(s);
-            }
-        });
+        mViewModel.getMsgMutableLiveData().observe(getViewLifecycleOwner(), s -> binding.textViewMsg.setText(s));
 
-        binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mViewModel.enableEdit();
-            }
-        });
+        binding.buttonEdit.setOnClickListener(view -> mViewModel.enableEdit());
 
-        binding.buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Propietario p = new Propietario();
-                p.setEmail(binding.editTextEmailAddress.getText().toString());
-                p.setNombre(binding.editTextName.getText().toString());
-                p.setApellido(binding.editTextLastName.getText().toString());
-                p.setDni((long) Integer.parseInt(binding.editTextDni.getText().toString()));
-                p.setTelefono(binding.editTextTel.getText().toString());
-                p.setContrasena(binding.editTextPassword.getText().toString());
-                mViewModel.saveChanges(p);
-            }
+        binding.buttonSave.setOnClickListener(view -> {
+            Propietario p = new Propietario();
+            p.setEmail(binding.editTextEmailAddress.getText().toString());
+            p.setNombre(binding.editTextName.getText().toString());
+            p.setApellido(binding.editTextLastName.getText().toString());
+            p.setDni((long) Integer.parseInt(binding.editTextDni.getText().toString()));
+            p.setTelefono(binding.editTextTel.getText().toString());
+            p.setContrasena(binding.editTextPassword.getText().toString());
+            mViewModel.saveChanges(p);
         });
 
         mViewModel.setCurrentUser();

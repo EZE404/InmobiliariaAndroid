@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.albornoz.inmobiliariaandroid.modelo.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -20,7 +23,10 @@ import retrofit2.http.*;
 public class ApiClientRetrofit {
 
     // URL base de la API
-    private static final String BASE_URL = "http://192.168.1.111:5000/api/";
+    private static final String HOST = "http://192.168.1.111";
+    private static final String PORT = "5000";
+    private static final String PATH = "api/";
+    private static final String BASE_URL = HOST + ":" + PORT + "/" + PATH;
 
     // Singleton de InmobiliariaService para evitar instanciar múltiples veces
     private static InmobiliariaService inmobiliariaService;
@@ -98,10 +104,11 @@ public class ApiClientRetrofit {
             });
 
             // Configuramos Retrofit con la URL base y añadimos GsonConverter para manejar JSON
+            Gson gson = new GsonBuilder().setLenient().create(); // Esto hace que el parseo sea más flexible
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL) // La URL base de la API
                     .client(httpClient.build()) // El cliente HTTP configurado
-                    .addConverterFactory(GsonConverterFactory.create()) // Conversor JSON
+                    .addConverterFactory(GsonConverterFactory.create(gson)) // Conversor JSON
                     .build();
 
             // Creación de la implementación de la interfaz InmobiliariaService
@@ -146,11 +153,21 @@ public class ApiClientRetrofit {
         // Login para obtener el token JWT enviando email y contraseña
         @POST("propietarios/login")
         @FormUrlEncoded
-        Call<String> login(@Field("email") String email, @Field("contraseña") String contraseña);
+        Call<String> login(@Field("Usuario") String email, @Field("Clave") String pass);
+
+        @Multipart
+        @POST("propietarios/login")
+        Call<String> login2(
+                @Part("Usuario") RequestBody email,
+                @Part("Clave") RequestBody pass
+        );
 
         // CRUD para Propietarios
         @GET("propietarios")
         Call<List<Propietario>> getPropietarios();
+
+        @GET("propietarios/getpropietario")
+        Call<Propietario> getPropietario();
 
         @GET("propietarios/getpropietario/{id}")
         Call<Propietario> getPropietario(@Path("id") int id);
@@ -228,4 +245,6 @@ public class ApiClientRetrofit {
         @DELETE("pagos/{id}")
         Call<Void> eliminarPago(@Path("id") int id);
     }
+
+    public static String getHost(){ return HOST + ":" + PORT + "/"; }
 }

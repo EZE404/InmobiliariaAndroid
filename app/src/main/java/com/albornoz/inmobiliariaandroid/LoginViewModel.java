@@ -1,11 +1,8 @@
 package com.albornoz.inmobiliariaandroid;
 
-import static com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit.*;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
@@ -17,6 +14,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginViewModel extends AndroidViewModel {
 
@@ -33,7 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
         return error_visibility;
     }
 
-    public void login(String email, String pass) {
+/*    public void login(String email, String pass) {
         ApiClient api = ApiClient.getApi();
         Propietario p = api.login(email, pass);
 
@@ -45,5 +48,41 @@ public class LoginViewModel extends AndroidViewModel {
         } else {
             error_visibility.setValue(View.VISIBLE);
         }
+    }*/
+
+    public void login(String email, String password) {
+        ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(context);
+
+        // Llamada al metodo login en la interfaz de la API
+        RequestBody emailBody = RequestBody.create(MediaType.parse("multipart/form-data"), email);
+        RequestBody passBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
+        Call<String> call = service.login2(emailBody, passBody);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Guardar el token en SharedPreferences
+                    String token = response.body();
+                    ApiClientRetrofit.guardarToken(context, token);
+                    // Aquí puedes manejar lo que ocurre después de un login exitoso
+                    // Por ejemplo, navegar a otra actividad
+                    error_visibility.setValue(View.INVISIBLE);
+                    Intent i = new Intent(context, MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                } else {
+                    // Manejar un login fallido (credenciales incorrectas)
+                    Log.d("LoginViewModel", "Login fallido: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                // Manejar el error en la solicitud
+                Log.d("LoginViewModel", "Error en la solicitud: " + t.getMessage());
+            }
+        });
     }
+
 }

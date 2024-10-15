@@ -50,23 +50,13 @@ public class LoginActivity extends AppCompatActivity {
         getPermissions();
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
                 .create(LoginViewModel.class);
-        viewModel.getErrorVisibility().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer visibility) {
-                errorLogin.setVisibility(visibility);
-            }
-        });
+        viewModel.getErrorVisibility().observe(this, visibility -> errorLogin.setVisibility(visibility));
 
         //Button listener
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewModel.login(
-                        editTextEmail.getText().toString(),
-                        editTextPass.getText().toString()
-                );
-            }
-        });
+        buttonLogin.setOnClickListener(view -> viewModel.login(
+                editTextEmail.getText().toString(),
+                editTextPass.getText().toString()
+        ));
 
         probarApi();
     }
@@ -163,12 +153,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void shakeInitialization() {
-        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
-            @Override
-            public void onShake(int count) {
-                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "2664422515"));
-                LoginActivity.this.startActivity(i);
-            }
+        mShakeDetector.setOnShakeListener(count -> {
+            Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "2665281216"));
+            LoginActivity.this.startActivity(i);
         });
     }
 

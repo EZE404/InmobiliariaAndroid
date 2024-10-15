@@ -15,8 +15,21 @@ public class Propietario implements Serializable {
     private String contrasena;
     private String telefono;
     private int avatar;
+    private String avatarUrl;
 
     public Propietario(){}
+    public Propietario(int id, Long dni, String nombre, String apellido, String email, String contrasena, String telefono, int avatar, String avatarUrl) {
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+        this.avatar=avatar;
+        this.avatarUrl = avatarUrl;
+    }
+
     public Propietario(int id, Long dni, String nombre, String apellido, String email, String contrasena, String telefono, int avatar) {
         this.id = id;
         this.dni = dni;
@@ -26,6 +39,14 @@ public class Propietario implements Serializable {
         this.contrasena = contrasena;
         this.telefono = telefono;
         this.avatar=avatar;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public int getId() {
@@ -115,7 +136,7 @@ public class Propietario implements Serializable {
                 ", email='" + email + '\'' +
                 ", contraseña='" + contrasena + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", avatar=" + avatar +
+                ", avatarUrl=" + avatarUrl +
                 '}';
     }
 }

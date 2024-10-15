@@ -24,6 +24,7 @@ public class ProfileViewModel extends ViewModel {
     }
 
     public void setCurrentUser() {
+        // ESTO NO VA MÁS PORQUE HAY QUE USAR RETROFIT
         pMutableLiveData.setValue(api.obtenerUsuarioActual());
     }
 
