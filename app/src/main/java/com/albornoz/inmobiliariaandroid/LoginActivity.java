@@ -20,8 +20,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.albornoz.inmobiliariaandroid.modelo.Propietario;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -57,6 +65,41 @@ public class LoginActivity extends AppCompatActivity {
                         editTextEmail.getText().toString(),
                         editTextPass.getText().toString()
                 );
+            }
+        });
+
+        probarApi();
+    }
+
+    private void probarApi() {
+
+        // Obtener el servicio de la API
+        ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(this);
+
+        // Recuperar un propietario con ID = 1 y imprimir por consola
+        Call<Propietario> call = service.getPropietario(1);
+
+        call.enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if (response.isSuccessful()) {
+                    Propietario propietario = response.body();
+
+                    if (propietario != null) {
+                        // Imprimir el propietario recuperado por consola
+                        System.out.println("Propietario recuperado:");
+                        System.out.println(propietario);
+                    } else {
+                        System.out.println("Propietario no encontrado.");
+                    }
+                } else {
+                    System.out.println("Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable t) {
+                System.out.println("Error en la llamada: " + t.getMessage());
             }
         });
     }

@@ -35,7 +35,7 @@ public class ApiClient {
     //Para que pueda iniciar sesion
     public Propietario login(String mail, final String password){
         for(Propietario propietario:propietarios){
-            if(propietario.getEmail().equals(mail)&&propietario.getContraseña().equals(password)){
+            if(propietario.getEmail().equals(mail)&&propietario.getContrasena().equals(password)){
                 usuarioActual=propietario;
                 return propietario;
             }

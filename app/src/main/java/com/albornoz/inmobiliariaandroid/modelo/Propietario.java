@@ -1,5 +1,6 @@
 package com.albornoz.inmobiliariaandroid.modelo;
 
+import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,18 +11,19 @@ public class Propietario implements Serializable {
     private String nombre;
     private String apellido;
     private String email;
-    private String contraseña;
+    @SerializedName("clave")
+    private String contrasena;
     private String telefono;
     private int avatar;
 
     public Propietario(){}
-    public Propietario(int id, Long dni, String nombre, String apellido, String email, String contraseña, String telefono, int avatar) {
+    public Propietario(int id, Long dni, String nombre, String apellido, String email, String contrasena, String telefono, int avatar) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.telefono = telefono;
         this.avatar=avatar;
     }
@@ -66,12 +68,12 @@ public class Propietario implements Serializable {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getTelefono() {
@@ -101,5 +103,19 @@ public class Propietario implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Propietario{" +
+                "id=" + id +
+                ", dni=" + dni +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contrasena + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", avatar=" + avatar +
+                '}';
     }
 }

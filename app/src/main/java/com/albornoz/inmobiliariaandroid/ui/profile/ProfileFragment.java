@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentProfileBinding;
 import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 
@@ -48,7 +46,7 @@ public class ProfileFragment extends Fragment {
                 binding.editTextLastName.setText(p.getApellido());
                 binding.editTextDni.setText(p.getDni().toString());
                 binding.editTextTel.setText(p.getTelefono());
-                binding.editTextPassword.setText(p.getContraseña());
+                binding.editTextPassword.setText(p.getContrasena());
             }
         });
 
@@ -107,7 +105,7 @@ public class ProfileFragment extends Fragment {
                 p.setApellido(binding.editTextLastName.getText().toString());
                 p.setDni((long) Integer.parseInt(binding.editTextDni.getText().toString()));
                 p.setTelefono(binding.editTextTel.getText().toString());
-                p.setContraseña(binding.editTextPassword.getText().toString());
+                p.setContrasena(binding.editTextPassword.getText().toString());
                 mViewModel.saveChanges(p);
             }
         });

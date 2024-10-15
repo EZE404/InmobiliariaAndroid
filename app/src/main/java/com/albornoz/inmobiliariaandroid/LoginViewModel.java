@@ -1,9 +1,12 @@
 package com.albornoz.inmobiliariaandroid;
 
+import static com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit.*;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 public class LoginViewModel extends AndroidViewModel {
 
