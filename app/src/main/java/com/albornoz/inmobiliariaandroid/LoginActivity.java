@@ -17,26 +17,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.albornoz.inmobiliariaandroid.modelo.Propietario;
-import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+import com.albornoz.inmobiliariaandroid.databinding.ActivityLoginBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel viewModel;
-    private EditText editTextEmail, editTextPass;
-    private Button buttonLogin;
-    private TextView errorLogin;
+    private ActivityLoginBinding binding;
     // Necesarios para ShakeDetection
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -45,65 +35,24 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initializeViews();
+        // Inicializar el View Binding
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getPermissions();
+
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
                 .create(LoginViewModel.class);
-        viewModel.getErrorVisibility().observe(this, visibility -> errorLogin.setVisibility(visibility));
+
+        viewModel.getErrorVisibility().observe(this, visibility -> binding.textViewLoginError.setVisibility(visibility));
 
         //Button listener
-        buttonLogin.setOnClickListener(view -> viewModel.login(
-                editTextEmail.getText().toString(),
-                editTextPass.getText().toString()
+        binding.buttonLogin.setOnClickListener(view -> viewModel.login(
+                binding.editTextEmailAddress.getText().toString(),
+                binding.editTextPassword.getText().toString()
         ));
 
-        //probarApi();
-    }
-
-    private void probarApi() {
-
-        // Obtener el servicio de la API
-        ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(this);
-
-        // Recuperar un propietario con ID = 1 y imprimir por consola
-        Call<Propietario> call = service.getPropietario(1);
-
-        call.enqueue(new Callback<Propietario>() {
-            @Override
-            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
-                if (response.isSuccessful()) {
-                    Propietario propietario = response.body();
-
-                    if (propietario != null) {
-                        // Imprimir el propietario recuperado por consola
-                        System.out.println("Propietario recuperado:");
-                        System.out.println(propietario);
-                    } else {
-                        System.out.println("Propietario no encontrado.");
-                    }
-                } else {
-                    System.out.println("Error en la respuesta: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Propietario> call, Throwable t) {
-                System.out.println("Error en la llamada: " + t.getMessage());
-            }
-        });
-    }
-
-    private void initializeViews() {
-        editTextEmail = findViewById(R.id.editTextEmailAddress);
-        editTextPass = findViewById(R.id.editTextPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        errorLogin = findViewById(R.id.textViewLoginError);
-        // Necesarios para ShakeDetection
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mAccelerometer = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mShakeDetector = new ShakeDetector();
+        // Inicializar ShakeDetection
+        initializeShakeDetection();
     }
 
     private void getPermissions() {
@@ -125,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             String[] permisos = new String[listaPermisos.size()];
             listaPermisos.toArray(permisos);
 
-            if (permisos.length>0) {
+            if (permisos.length > 0) {
                 Log.d("permisos", "dentro del if de requestPermissions");
                 ActivityCompat.requestPermissions(this, permisos, 100);
             } else {
@@ -144,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                     finishAffinity();
                 }
             }
-            // realizar la tarea
             shakeInitialization();
         } else {
             Log.d("permisos", "onRequestPermissionsResult: requestCode distinto de 100");
@@ -159,19 +107,23 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void initializeShakeDetection() {
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        editTextPass.setText("");
-        editTextEmail.setText("");
-        editTextEmail.requestFocus();
-        // Se registra el listener del sensor cada vez que la vista login se retoma
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+        binding.editTextPassword.setText("");
+        binding.editTextEmailAddress.setText("");
+        binding.editTextEmailAddress.requestFocus();
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
     @Override
     public void onPause() {
-        // Se desregistra el listener del sensor cuando la vista Login sale de pantalla
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }

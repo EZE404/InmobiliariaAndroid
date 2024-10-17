@@ -78,6 +78,7 @@ public class ProfileFragment extends Fragment {
         binding.buttonEdit.setOnClickListener(view -> mViewModel.enableEdit());
 
         binding.buttonSave.setOnClickListener(view -> {
+            //TODO: Podría pasar todos los datos al viewmodel, en vez de construir un Propietario
             Propietario p = new Propietario();
             p.setEmail(binding.editTextEmailAddress.getText().toString());
             p.setNombre(binding.editTextName.getText().toString());

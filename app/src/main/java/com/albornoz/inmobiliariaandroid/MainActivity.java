@@ -61,11 +61,9 @@ public class MainActivity extends AppCompatActivity {
         // Observar los cambios en los LiveData del ViewModel
         viewModel.getNombre().observe(this, headerBinding.textViewHeaderName::setText);
         viewModel.getEmail().observe(this, headerBinding.textViewHeaderEmail::setText);
-        viewModel.getAvatarUrl().observe(this, url -> {
-            Glide.with(this)
-                    .load(url)
-                    .into(headerBinding.imageViewAvatar);
-        });
+        viewModel.getAvatarUrl().observe(this, url -> Glide.with(this)
+                .load(url)
+                .into(headerBinding.imageViewAvatar));
 
         // Llamamos a fetchPropietario para cargar los datos del propietario
         viewModel.fetchPropietario();

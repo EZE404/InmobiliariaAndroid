@@ -39,10 +39,10 @@ public class LoginViewModel extends AndroidViewModel {
         ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(context);
 
         // Llamada al metodo login en la interfaz de la API
-        RequestBody emailBody = RequestBody.create(MediaType.parse("multipart/form-data"), email);
-        RequestBody passBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
-        Call<String> call = service.login2(emailBody, passBody);
-
+        //RequestBody emailBody = RequestBody.create(MediaType.parse("multipart/form-data"), email);
+        //RequestBody passBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
+        //Call<String> call = service.login2(emailBody, passBody);
+        Call<String> call = service.login(email, password);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
