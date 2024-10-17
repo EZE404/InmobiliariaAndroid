@@ -5,14 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.albornoz.inmobiliariaandroid.modelo.Propietario;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 import okhttp3.MediaType;
@@ -35,20 +34,6 @@ public class LoginViewModel extends AndroidViewModel {
         if (error_visibility == null) { error_visibility = new MutableLiveData<>(); }
         return error_visibility;
     }
-
-/*    public void login(String email, String pass) {
-        ApiClient api = ApiClient.getApi();
-        Propietario p = api.login(email, pass);
-
-        if (p != null) {
-            error_visibility.setValue(View.INVISIBLE);
-            Intent i = new Intent(context, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
-        } else {
-            error_visibility.setValue(View.VISIBLE);
-        }
-    }*/
 
     public void login(String email, String password) {
         ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(context);
@@ -74,6 +59,7 @@ public class LoginViewModel extends AndroidViewModel {
                 } else {
                     // Manejar un login fallido (credenciales incorrectas)
                     Log.d("LoginViewModel", "Login fallido: " + response.message());
+                    Toast.makeText(context, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -81,6 +67,7 @@ public class LoginViewModel extends AndroidViewModel {
             public void onFailure(Call<String> call, Throwable t) {
                 // Manejar el error en la solicitud
                 Log.d("LoginViewModel", "Error en la solicitud: " + t.getMessage());
+                Toast.makeText(context, "Error en la solicitud", Toast.LENGTH_SHORT).show();
             }
         });
     }

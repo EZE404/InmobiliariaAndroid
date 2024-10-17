@@ -6,216 +6,229 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         tools:context=".ui.profile.ProfileFragment">
 
-
-
+        <!-- Email -->
         <TextView
             android:id="@+id/textViewLabelEmail"
-            android:labelFor="@id/editTextEmailAddress"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/email_label"
-            android:textAlignment="textStart"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextEmailAddress"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:enabled="false"
             android:hint="@string/email_label"
             android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelEmail" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelEmail" />
 
+        <!-- Nombre -->
         <TextView
             android:id="@+id/textViewLabelName"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:labelFor="@id/editTextName"
+            android:layout_marginTop="16dp"
             android:text="@string/nombre_label"
-            android:textAlignment="textStart"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextEmailAddress" />
 
         <EditText
             android:id="@+id/editTextName"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:enabled="false"
             android:hint="@string/nombre_label"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelName" />
 
+        <!-- Apellido -->
         <TextView
             android:id="@+id/textViewLabelLastName"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:labelFor="@id/editTextLastName"
+            android:layout_marginTop="16dp"
             android:text="@string/apellido_label"
-            android:textAlignment="textStart"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextName" />
 
         <EditText
             android:id="@+id/editTextLastName"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:enabled="false"
             android:hint="@string/apellido_label"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelLastName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelLastName" />
 
+        <!-- DNI -->
         <TextView
             android:id="@+id/textViewLabelDni"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:labelFor="@id/editTextDni"
+            android:layout_marginTop="16dp"
             android:text="@string/dni_label"
-            android:textAlignment="textStart"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextLastName" />
 
         <EditText
             android:id="@+id/editTextDni"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:enabled="false"
             android:hint="@string/dni_label"
             android:inputType="text|numberSigned"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelDni" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelDni" />
 
+        <!-- Teléfono -->
         <TextView
             android:id="@+id/textViewLabelTel"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:labelFor="@id/editTextTel"
+            android:layout_marginTop="16dp"
             android:text="@string/tel_label"
-            android:textAlignment="textStart"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDni" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextDni" />
 
         <EditText
             android:id="@+id/editTextTel"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:enabled="false"
-            android:hint="@string/tel_label"
-            android:inputType="text|numberSigned"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelTel" />
-
-        <TextView
-            android:id="@+id/textViewLabelPass"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:labelFor="@id/editTextTel"
-            android:text="@string/pass_label"
-            android:textAlignment="textStart"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            android:enabled="false"
+            android:hint="@string/tel_label"
+            android:inputType="phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTel" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelTel" />
+
+        <!-- Domicilio -->
+        <TextView
+            android:id="@+id/textViewLabelAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Domicilio"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextTel" />
 
         <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="389dp"
-            android:layout_height="48dp"
+            android:id="@+id/editTextAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:enabled="false"
-            android:hint="@string/pass_label"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="Domicilio"
+            android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLabelPass" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelAddress" />
+
+        <!-- Fecha de Nacimiento -->
+        <TextView
+            android:id="@+id/textViewLabelBirthDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Fecha de nacimiento"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextAddress" />
+
+        <EditText
+            android:id="@+id/editTextBirthDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:enabled="false"
+            android:hint="Selecciona una fecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonSelectBirthDate"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelBirthDate"
+            app:layout_constraintHorizontal_bias="0" />
 
         <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="105dp"
-            android:layout_height="48dp"
+            android:id="@+id/buttonSelectBirthDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="8dp"
+            android:text="Fecha"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/editTextBirthDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLabelBirthDate"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintWidth_percent="0.4" /> <!-- Ajusta el ancho del botón -->
+
+        <!-- Botones -->
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/save_label"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/textViewMsg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-            app:layout_constraintVertical_bias="0.533" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSelectBirthDate" />
 
         <Button
             android:id="@+id/buttonEdit"
-            android:layout_width="88dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/edit_label"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/textViewMsg"
-            app:layout_constraintEnd_toStartOf="@+id/buttonSave"
-            app:layout_constraintHorizontal_bias="0.676"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <TextView
-            android:id="@+id/textViewMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="@string/datos_guardados_msg"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:text="@string/edit_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonSelectBirthDate" />
 
+        <!-- Mensaje -->
+        <TextView
+            android:id="@+id/textViewMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonEdit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

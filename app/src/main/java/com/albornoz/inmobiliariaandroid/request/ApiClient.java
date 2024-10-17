@@ -4,6 +4,7 @@ import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ApiClient {
@@ -35,7 +36,7 @@ public class ApiClient {
     //Para que pueda iniciar sesion
     public Propietario login(String mail, final String password){
         for(Propietario propietario:propietarios){
-            if(propietario.getEmail().equals(mail)&&propietario.getContrasena().equals(password)){
+            if(propietario.getEmail().equals(mail)&&propietario.getClave().equals(password)){
                 usuarioActual=propietario;
                 return propietario;
             }
@@ -127,8 +128,8 @@ public class ApiClient {
     private void cargaDatos(){
 
         //Propietarios
-        Propietario juan=new Propietario(1,23492012L,"Juan","Perez","juan@mail.com","123","2664553447", R.drawable.juan);
-        Propietario sonia=new Propietario(2,17495869L,"Sonia","Lucero","sonia@mail.com","123","266485417",R.drawable.sonia);
+        Propietario juan=new Propietario(1,"23492012","Juan","Perez",new Date(),"juan@mail.com","123","2664553447", "calle falsa 123", "/unaruta/imagen.png");
+        Propietario sonia=new Propietario(2,"23465012","Sofia","Gonzalez",new Date(),"sofia@mail.com","123","2664553447", "calle falsa 123", "/unaruta/imagen.png");
         propietarios.add(juan);
         propietarios.add(sonia);
 

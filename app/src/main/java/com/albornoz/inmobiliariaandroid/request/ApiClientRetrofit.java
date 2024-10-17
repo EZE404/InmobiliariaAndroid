@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.albornoz.inmobiliariaandroid.modelo.*;
+import com.albornoz.inmobiliariaandroid.tools.DateDeserializer;
+import com.albornoz.inmobiliariaandroid.tools.DateSerializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -15,6 +18,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,7 +32,6 @@ public class ApiClientRetrofit {
     private static final String PATH = "api/";
     private static final String BASE_URL = HOST + ":" + PORT + "/" + PATH;
 
-    // Singleton de InmobiliariaService para evitar instanciar múltiples veces
     private static InmobiliariaService inmobiliariaService;
 
     // Para almacenar el token JWT en SharedPreferences
@@ -80,31 +83,37 @@ public class ApiClientRetrofit {
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
             // Añadimos un interceptor para manejar las cabeceras de autorización
-            httpClient.addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(Chain chain) throws IOException {
-                    // Captura la solicitud original
-                    Request originalRequest = chain.request();
-                    Request.Builder requestBuilder = originalRequest.newBuilder();
+            httpClient.addInterceptor(chain -> {
+                // Captura la solicitud original
+                Request originalRequest = chain.request();
+                Request.Builder requestBuilder = originalRequest.newBuilder();
 
-                    // Lee el token guardado en SharedPreferences
-                    String token = sharedPreferences.getString("token", null);
+                // Lee el token guardado en SharedPreferences
+                String token = sharedPreferences.getString("token", null);
 
-                    // Si el token no es nulo, lo añade en la cabecera "Authorization"
-                    if (token != null) {
-                        requestBuilder.header("Authorization", "Bearer " + token);
-                    }
-
-                    // Construye la nueva solicitud con el token (si está presente)
-                    Request request = requestBuilder.build();
-
-                    // Envía la solicitud modificada con el token de autorización
-                    return chain.proceed(request);
+                // Si el token no es nulo, lo añade en la cabecera "Authorization"
+                if (token != null) {
+                    requestBuilder.header("Authorization", "Bearer " + token);
                 }
+
+                // Construye la nueva solicitud con el token (si está presente)
+                Request request = requestBuilder.build();
+
+                // Envía la solicitud modificada con el token de autorización
+                return chain.proceed(request);
             });
 
+            // Crear un interceptor para el logging
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            httpClient.addInterceptor(loggingInterceptor);
+
             // Configuramos Retrofit con la URL base y añadimos GsonConverter para manejar JSON
-            Gson gson = new GsonBuilder().setLenient().create(); // Esto hace que el parseo sea más flexible
+            Gson gson = new GsonBuilder()
+                    .setLenient()// Esto hace que el parseo sea más flexible
+                    .registerTypeAdapter(Date.class, new DateSerializer())
+                    .registerTypeAdapter(Date.class, new DateDeserializer())
+                    .create();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL) // La URL base de la API
                     .client(httpClient.build()) // El cliente HTTP configurado
@@ -174,6 +183,10 @@ public class ApiClientRetrofit {
 
         @POST("propietarios")
         Call<Propietario> crearPropietario(@Body Propietario propietario);
+
+        // El que va a utilizar el propietario logueado en la app
+        @PUT("propietarios/actualizarpropietario")
+        Call<Propietario> actualizarPropietario(@Body Propietario propietario);
 
         @PUT("propietarios/{id}")
         Call<Propietario> actualizarPropietario(@Path("id") int id, @Body Propietario propietario);
