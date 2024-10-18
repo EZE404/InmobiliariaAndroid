@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_change_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cambiar contraseña"
+        android:textSize="24sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Label para la contraseña actual -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña actual"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Campo para ingresar la contraseña actual -->
+    <EditText
+        android:id="@+id/et_current_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce tu contraseña actual"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Label para la nueva contraseña -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nueva contraseña"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Campo para ingresar la nueva contraseña -->
+    <EditText
+        android:id="@+id/et_new_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce tu nueva contraseña"
+        android:inputType="textPassword"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Botón para confirmar el cambio -->
+    <Button
+        android:id="@+id/btn_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar cambio"
+        android:padding="12dp" />
+</LinearLayout>

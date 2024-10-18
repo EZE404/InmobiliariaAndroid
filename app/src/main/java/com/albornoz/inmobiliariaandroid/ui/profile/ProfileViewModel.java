@@ -3,6 +3,7 @@ package com.albornoz.inmobiliariaandroid.ui.profile;
 import android.app.Application;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -13,6 +14,10 @@ import androidx.lifecycle.ViewModel;
 import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,6 +117,50 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public void saveChanges(Propietario p) {
         //api.actualizarPerfil(p);
+        api.actualizarPropietario(p).enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if (response.isSuccessful()) {
+                    pMutableLiveData.setValue(p);
+                    msgMutableLiveData.setValue("Datos guardados.");
+                } else {
+                    Log.d("ProfileViewModel", "Error al guardar los datos: " + call.request().body());
+                    msgMutableLiveData.setValue("Error al guardar los datos");
+                    Log.d("ProfileViewModel", "Error al guardar los datos: " + response.code() + " - " + response.message());
+                }
+                buttonSaveVisibility.setValue(View.INVISIBLE);
+                buttonEditVisibility.setValue(View.VISIBLE);
+                buttonDateVisibility.setValue(View.INVISIBLE);
+                editEnabled.setValue(false);
+                msgVisibility.setValue(View.VISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable t) {
+                msgMutableLiveData.setValue("Error de conexión");
+            }
+        });
+    }
+
+    public void saveChanges2(String name, String lastName, String dni, String tel, String email, String address, String birthDate) {
+        Propietario p = new Propietario();
+        p.setEmail(email);
+        p.setNombre(name);
+        p.setApellido(lastName);
+        p.setDni(dni);
+        p.setTelefono(tel);
+        p.setDireccion(address);
+
+        // Establecer la fecha de nacimiento en el objeto Propietario
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            Date fechaNacimiento = sdf.parse(birthDate);
+            p.setFechaNacimiento(fechaNacimiento);
+        } catch (Exception e) {
+            Toast.makeText(getApplication(), "Error al parsear la fecha de nacimiento", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         api.actualizarPropietario(p).enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {

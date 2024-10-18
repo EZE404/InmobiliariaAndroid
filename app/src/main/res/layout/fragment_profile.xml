@@ -182,6 +182,7 @@
             android:layout_marginTop="8dp"
             android:enabled="false"
             android:hint="Selecciona una fecha"
+            android:inputType="date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonSelectBirthDate"
             app:layout_constraintTop_toBottomOf="@id/textViewLabelBirthDate"
@@ -219,6 +220,15 @@
             android:text="@string/edit_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonSelectBirthDate" />
+        <Button
+            android:id="@+id/buttonChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Cambiar Clave"
+            app:layout_constraintTop_toBottomOf="@id/buttonEdit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Mensaje -->
         <TextView
@@ -229,6 +239,6 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonEdit" />
+            app:layout_constraintTop_toBottomOf="@id/buttonChangePassword" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

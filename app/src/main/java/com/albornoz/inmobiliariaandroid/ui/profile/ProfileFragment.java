@@ -8,17 +8,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentProfileBinding;
-import com.albornoz.inmobiliariaandroid.modelo.Propietario;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class ProfileFragment extends Fragment {
@@ -78,29 +78,24 @@ public class ProfileFragment extends Fragment {
         binding.buttonEdit.setOnClickListener(view -> mViewModel.enableEdit());
 
         binding.buttonSave.setOnClickListener(view -> {
-            //TODO: Podría pasar todos los datos al viewmodel, en vez de construir un Propietario
-            Propietario p = new Propietario();
-            p.setEmail(binding.editTextEmailAddress.getText().toString());
-            p.setNombre(binding.editTextName.getText().toString());
-            p.setApellido(binding.editTextLastName.getText().toString());
-            p.setDni(binding.editTextDni.getText().toString());
-            p.setTelefono(binding.editTextTel.getText().toString());
-            p.setDireccion(binding.editTextAddress.getText().toString());
+            String name = binding.editTextName.getText().toString();
+            String lastName = binding.editTextLastName.getText().toString();
+            String email = binding.editTextEmailAddress.getText().toString();
+            String dni = binding.editTextDni.getText().toString();
+            String tel = binding.editTextTel.getText().toString();
+            String address = binding.editTextAddress.getText().toString();
+            String birthDate = binding.editTextBirthDate.getText().toString();
 
-            // Establecer la fecha de nacimiento en el objeto Propietario
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                Date fechaNacimiento = sdf.parse(binding.editTextBirthDate.getText().toString());
-                p.setFechaNacimiento(fechaNacimiento);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            mViewModel.saveChanges(p);
+            mViewModel.saveChanges2(name, lastName, dni, tel, email, address, birthDate);
         });
 
         // Manejar el evento de clic del botón para seleccionar la fecha
         binding.buttonSelectBirthDate.setOnClickListener(view -> showDatePickerDialog());
+        binding.buttonChangePassword.setOnClickListener(v -> {
+            // TODO: Navegar al fragmento o activity de cambio de clave
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_nav_profile_to_passFragment);
+        });
 
         mViewModel.setCurrentUser();
     }

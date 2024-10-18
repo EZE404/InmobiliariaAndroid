@@ -14,7 +14,20 @@
         android:id="@+id/nav_profile"
         android:name="com.albornoz.inmobiliariaandroid.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_passFragment"
+            app:destination="@id/passFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passFragment"
+        android:name="com.albornoz.inmobiliariaandroid.ui.profile.PassFragment"
+        android:label="Cambiar Contraseña" >
+        <action
+            android:id="@+id/action_passFragment_to_nav_profile"
+            app:destination="@id/nav_profile" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_real_estates"
         android:name="com.albornoz.inmobiliariaandroid.ui.realestates.RealEstatesFragment"

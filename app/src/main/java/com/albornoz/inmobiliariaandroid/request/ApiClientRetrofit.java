@@ -188,6 +188,14 @@ public class ApiClientRetrofit {
         @PUT("propietarios/actualizarpropietario")
         Call<Propietario> actualizarPropietario(@Body Propietario propietario);
 
+        // El que va a utilizar el propietario logueado en la app
+        @FormUrlEncoded
+        @PUT("propietarios/actualizarclave")
+        Call<Void> actualizarClave(
+                @Field("currentpass") String currentPass,
+                @Field("newpass") String newPass
+        );
+
         @PUT("propietarios/{id}")
         Call<Propietario> actualizarPropietario(@Path("id") int id, @Body Propietario propietario);
 
