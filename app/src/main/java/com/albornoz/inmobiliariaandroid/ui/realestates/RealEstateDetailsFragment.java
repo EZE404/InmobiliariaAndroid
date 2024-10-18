@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import com.albornoz.inmobiliariaandroid.R;
-import com.albornoz.inmobiliariaandroid.databinding.FragmentProfileBinding;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentRealEstateDetailsBinding;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.bumptech.glide.Glide;
@@ -55,10 +53,10 @@ public class RealEstateDetailsFragment extends Fragment {
                 binding.tvAmbientes.setText(String.valueOf(i.getAmbientes()));
                 binding.tvPropietario.setText(i.getPropietario().getNombre()+" "+i.getPropietario().getApellido());
 
-                binding.cbDisponible.setChecked(i.isEstado());
+                binding.cbDisponible.setChecked(i.isDisponible());
 
                 Glide.with(root.getContext())
-                        .load(i.getImagen())
+                        .load(i.getImageUrl())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(binding.ivPhoto);
             }

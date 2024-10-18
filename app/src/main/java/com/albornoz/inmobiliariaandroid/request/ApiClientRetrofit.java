@@ -206,6 +206,9 @@ public class ApiClientRetrofit {
         @GET("inmuebles")
         Call<List<Inmueble>> getInmuebles();
 
+        @GET("inmuebles/getinmueblesdepropietario")
+        Call<List<Inmueble>> getInmueblesByPropietario();
+
         @GET("inmuebles/{id}")
         Call<Inmueble> getInmueble(@Path("id") int id);
 

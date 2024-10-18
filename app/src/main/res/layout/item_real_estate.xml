@@ -3,16 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/cardview_light_background"
     app:contentPadding="10dp"
     app:cardElevation="10dp"
     android:layout_marginVertical="5dp"
     android:id="@+id/cvRealEstate"
-    app:cardCornerRadius="6dp">
+    app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginHorizontal="8dp"
         android:layout_height="wrap_content">
 
         <TextView

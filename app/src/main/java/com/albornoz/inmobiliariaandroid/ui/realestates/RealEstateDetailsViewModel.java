@@ -33,7 +33,7 @@ public class RealEstateDetailsViewModel extends ViewModel {
     public void setDisponible(boolean b) {
         Log.d("curabichera", "setDisponible: "+b);
         Inmueble i = iMutable.getValue();
-        i.setEstado(b);
+        i.setDisponible(b);
         api.actualizarInmueble(i);
         iMutable.setValue(i);
     }

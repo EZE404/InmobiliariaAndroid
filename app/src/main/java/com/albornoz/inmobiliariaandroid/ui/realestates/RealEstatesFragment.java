@@ -42,18 +42,15 @@ public class RealEstatesFragment extends Fragment {
         View root = binding.getRoot();
         recyclerViewLista = binding.RVLista;
 
-        rViewModel.getRealEstatesMutable().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
-            @Override
-            public void onChanged(List<Inmueble> inmuebles) {
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-                        getContext(),
-                        LinearLayoutManager.VERTICAL,
-                        false
-                );
-                recyclerViewLista.setLayoutManager(linearLayoutManager);
-                adapter = new RealEstatesAdapter(root, inmuebles);
-                recyclerViewLista.setAdapter(adapter);
-            }
+        rViewModel.getRealEstatesMutable().observe(getViewLifecycleOwner(), inmuebles -> {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                    getContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+            );
+            recyclerViewLista.setLayoutManager(linearLayoutManager);
+            adapter = new RealEstatesAdapter(root, inmuebles);
+            recyclerViewLista.setAdapter(adapter);
         });
 
         rViewModel.setInmueblesMutable();

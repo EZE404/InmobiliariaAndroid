@@ -18,7 +18,6 @@ import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class ContractsAdapter extends RecyclerView.Adapter<ContractsAdapter.MiVi
         holder.tvAddress.setText(i.getDireccion());
         holder.tvDetails.setText(api.obtenerInquilino(i).getNombre()+" "+api.obtenerInquilino(i).getApellido());
         Glide.with(root.getContext())
-                .load(i.getImagen())
+                .load(i.getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivPhoto);
         holder.cvRealEstate.setOnClickListener(new View.OnClickListener() {

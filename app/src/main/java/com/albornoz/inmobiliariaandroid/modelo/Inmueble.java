@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Inmueble implements Serializable {
 
-    private int idInmueble;
+    private int id;
     private String direccion;
     private String uso;
     private String tipo;
@@ -14,29 +14,29 @@ public class Inmueble implements Serializable {
     private double precio;
     private Propietario propietario;
     //En falso significa que el innmueble no está disponible por alguna falla en el mismo.
-    private boolean estado=true;
-    private String imagen;
+    private boolean disponible =true;
+    private String imageUrl;
 
-    public Inmueble(int idInmueble, String direccion, String uso, String tipo, int ambientes, double precio, Propietario propietario, boolean estado, String imagen) {
-        this.idInmueble = idInmueble;
+    public Inmueble(int id, String direccion, String uso, String tipo, int ambientes, double precio, Propietario propietario, boolean disponible, String imageUrl) {
+        this.id = id;
         this.direccion = direccion;
         this.uso = uso;
         this.tipo = tipo;
         this.ambientes = ambientes;
         this.precio = precio;
         this.propietario = propietario;
-        this.estado = estado;
-        this.imagen = imagen;
+        this.disponible = disponible;
+        this.imageUrl = imageUrl;
     }
     public Inmueble() {
 
     }
-    public int getIdInmueble() {
-        return idInmueble;
+    public int getId() {
+        return id;
     }
 
-    public void setIdInmueble(int idInmueble) {
-        this.idInmueble = idInmueble;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDireccion() {
@@ -87,20 +87,20 @@ public class Inmueble implements Serializable {
         this.propietario = propietario;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public boolean isDisponible() {
+        return disponible;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -108,11 +108,11 @@ public class Inmueble implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Inmueble inmueble = (Inmueble) o;
-        return idInmueble == inmueble.idInmueble;
+        return id == inmueble.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idInmueble);
+        return Objects.hash(id);
     }
 }
