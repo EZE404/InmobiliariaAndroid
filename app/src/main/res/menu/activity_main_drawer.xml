@@ -17,13 +17,13 @@
             android:icon="@drawable/ic_menu_house_outline"
             android:title="@string/menu_real_estates" />
         <item
-            android:id="@+id/nav_tenants"
-            android:icon="@drawable/ic_menu_tenants_outline"
-            android:title="@string/menu_tenants" />
-        <item
             android:id="@+id/nav_contracts"
             android:icon="@drawable/ic_menu_contract_outline"
             android:title="@string/menu_contracts" />
+        <item
+            android:id="@+id/nav_tenants"
+            android:icon="@drawable/ic_menu_tenants_outline"
+            android:title="@string/menu_tenants" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_logout_outline"

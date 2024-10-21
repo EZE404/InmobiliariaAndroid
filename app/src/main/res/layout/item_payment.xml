@@ -44,6 +44,7 @@
             android:id="@+id/tvFecha"
             android:text="@string/fecha_de_pago_label"
             android:textStyle="bold"
+            android:inputType="datetime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

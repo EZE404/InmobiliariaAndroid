@@ -1,6 +1,8 @@
 package com.albornoz.inmobiliariaandroid.modelo;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,7 +10,9 @@ public class Inmueble implements Serializable {
 
     private int id;
     private String direccion;
+    @SerializedName("usoNombre")
     private String uso;
+    @SerializedName("tipoNombre")
     private String tipo;
     private int ambientes;
     private double precio;

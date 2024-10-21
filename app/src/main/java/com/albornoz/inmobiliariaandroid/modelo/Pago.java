@@ -1,31 +1,33 @@
 package com.albornoz.inmobiliariaandroid.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Pago implements Serializable {
 
-    private int idPago;
+    private int id;
     private int numero;
     private Contrato contrato;
-    private double importe;
-    private String fechaDePago;
+    private double monto;
+    //private String fecha;
+    private Date fecha;
 
     public Pago() {}
 
-    public Pago(int idPago, int numero, Contrato contrato, double importe, String fechaDePago) {
-        this.idPago = idPago;
+    public Pago(int id, int numero, Contrato contrato, double monto, Date fecha) {
+        this.id = id;
         this.numero = numero;
         this.contrato = contrato;
-        this.importe = importe;
-        this.fechaDePago = fechaDePago;
+        this.monto = monto;
+        this.fecha = fecha;
     }
 
-    public int getIdPago() {
-        return idPago;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPago(int idPago) {
-        this.idPago = idPago;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getNumero() {
@@ -44,19 +46,19 @@ public class Pago implements Serializable {
         this.contrato = contrato;
     }
 
-    public double getImporte() {
-        return importe;
+    public double getMonto() {
+        return monto;
     }
 
-    public void setImporte(double importe) {
-        this.importe = importe;
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
 
-    public String getFechaDePago() {
-        return fechaDePago;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaDePago(String fechaDePago) {
-        this.fechaDePago = fechaDePago;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

@@ -1,8 +1,12 @@
 package com.albornoz.inmobiliariaandroid.ui.contracts;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -12,17 +16,39 @@ import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Contrato;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
-public class ContractDetailsViewModel extends ViewModel {
-    private ApiClient api;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ContractDetailsViewModel extends AndroidViewModel {
+    private ApiClientRetrofit.InmobiliariaService service;
     private MutableLiveData<Contrato> cMutable;
 
-    public ContractDetailsViewModel() {
-        this.api = ApiClient.getApi();
+    public ContractDetailsViewModel(@NonNull Application application) {
+        super(application);
+        service = ApiClientRetrofit.getInmobiliariaService(getApplication());
     }
 
     public void setContrato(Bundle b) {
-        cMutable.setValue(api.obtenerContratoVigente((Inmueble)b.getSerializable("realEstate")));
+        //cMutable.setValue(api.obtenerContratoVigente((Inmueble)b.getSerializable("realEstate")));
+        Inmueble i = (Inmueble) b.getSerializable("realEstate");
+        service.getContratoActualDeInmueble(i.getId()).enqueue(new Callback<Contrato>() {
+            @Override
+            public void onResponse(Call<Contrato> call, Response<Contrato> response) {
+                if (response.isSuccessful()) {
+                    cMutable.setValue(response.body());
+                } else {
+                    Toast.makeText(getApplication(), "No se pudo obtener el contrato", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Contrato> call, Throwable throwable) {
+                Toast.makeText(getApplication(), "Error en el servidor", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public LiveData<Contrato> getContratoMutable() {
@@ -32,9 +58,9 @@ public class ContractDetailsViewModel extends ViewModel {
         return cMutable;
     }
 
-    public void openPagos(View root) {
+    /*public void openPagos(View root) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("contrato", cMutable.getValue());
         Navigation.findNavController(root).navigate(R.id.pagosFragment, bundle);
-    }
+    }*/
 }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -24,10 +25,9 @@ import java.util.List;
 public class ContractsAdapter extends RecyclerView.Adapter<ContractsAdapter.MiViewHolder> {
 
     private LayoutInflater layoutInflater;
-    private Context context;
+    //private Context context;
     private List<Inmueble> inmuebles;
     private View root;
-    private ApiClient api;
 
     public ContractsAdapter(
             View root,
@@ -35,34 +35,31 @@ public class ContractsAdapter extends RecyclerView.Adapter<ContractsAdapter.MiVi
     ) {
         this.root = root;
         this.layoutInflater = LayoutInflater.from(root.getContext());
-        this.context = root.getContext();
+        //this.context = root.getContext();
         this.inmuebles = inmuebles;
-        this.api = ApiClient.getApi();
     }
 
     @NonNull
-    @Override // Referenciar a la vista item_movie y pasarla a la clase MiViewHolder
+    @Override // Referenciar a la vista item_real_estate y pasarla a la clase MiViewHolder
     public ContractsAdapter.MiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.item_real_estate, parent, false);
         return new ContractsAdapter.MiViewHolder(view);
     }
 
-    @Override // Se ejecuta por cada movie de la lista
+    @Override // Se ejecuta por cada inmueble de la lista
     public void onBindViewHolder(@NonNull ContractsAdapter.MiViewHolder holder, int position) {
         Inmueble i = inmuebles.get(position);
         holder.tvAddress.setText(i.getDireccion());
-        holder.tvDetails.setText(api.obtenerInquilino(i).getNombre()+" "+api.obtenerInquilino(i).getApellido());
+        holder.tvDetails.setText(String.format("%s - %s", i.getTipo(), i.getUso()));
         Glide.with(root.getContext())
-                .load(i.getImageUrl())
+                .load(ApiClientRetrofit.getHost() + i.getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .circleCrop()
                 .into(holder.ivPhoto);
-        holder.cvRealEstate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("realEstate", i);
-                Navigation.findNavController(root).navigate(R.id.contractDetailsFragment, bundle); // TODO: CAMBIAR A R.id.ContractsDetailsFragment después de agregarlo al mobile_navigation
-            }
+        holder.cvRealEstate.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("realEstate", i);
+            Navigation.findNavController(root).navigate(R.id.contractDetailsFragment, bundle);
         });
     }
 
@@ -74,7 +71,8 @@ public class ContractsAdapter extends RecyclerView.Adapter<ContractsAdapter.MiVi
     public class MiViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cvRealEstate;
-        private TextView tvDetails, tvAddress;
+        private TextView tvDetails;
+        private TextView tvAddress;
         private ImageView ivPhoto;
 
         public MiViewHolder(@NonNull View itemView) {

@@ -16,8 +16,12 @@ import android.widget.CompoundButton;
 
 import com.albornoz.inmobiliariaandroid.databinding.FragmentRealEstateDetailsBinding;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class RealEstateDetailsFragment extends Fragment {
 
@@ -35,32 +39,32 @@ public class RealEstateDetailsFragment extends Fragment {
         binding = FragmentRealEstateDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.cbDisponible.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                rViewModel.setDisponible(b);
-            }
+        rViewModel.getInmuebleMutable().observe(getViewLifecycleOwner(), i -> {
+            // Crear un NumberFormat para el locale español
+            NumberFormat formatoEspanol = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+            // Asegurar que el formato utilice 2 decimales
+            formatoEspanol.setMinimumFractionDigits(2);
+            formatoEspanol.setMaximumFractionDigits(2);
+            // Convertir el número a texto
+            String numeroTexto = formatoEspanol.format(i.getPrecio());
+            binding.tvPrecio.setText(String.format("$%s", numeroTexto));
+            binding.tvAddress.setText(i.getDireccion());
+            binding.tvTipo.setText(i.getTipo());
+            binding.tvUso.setText(i.getUso());
+            binding.tvAmbientes.setText(String.valueOf(i.getAmbientes()));
+            binding.cbDisponible.setChecked(i.isDisponible());
+            Glide.with(root.getContext())
+                    .load(ApiClientRetrofit.getHost() + i.getImageUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.ivPhoto);
         });
 
-        rViewModel.getInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
-            @Override
-            public void onChanged(Inmueble i) {
-                // TODO: cargar datos en las vistas
-                binding.tvAddress.setText(i.getDireccion());
-                binding.tvPrecio.setText(String.valueOf(i.getPrecio()));
-                binding.tvTipo.setText(i.getTipo());
-                binding.tvUso.setText(i.getUso());
-                binding.tvAmbientes.setText(String.valueOf(i.getAmbientes()));
-                binding.tvPropietario.setText(i.getPropietario().getNombre()+" "+i.getPropietario().getApellido());
+        rViewModel.getDisponibleCheckEnabledMutable().observe(getViewLifecycleOwner(), enabled ->
+            binding.cbDisponible.setEnabled(enabled)
+        );
 
-                binding.cbDisponible.setChecked(i.isDisponible());
-
-                Glide.with(root.getContext())
-                        .load(i.getImageUrl())
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(binding.ivPhoto);
-            }
-        });
+        // TODO: cuando el checkbox cambie, hacer que el viewmodel cambie en el server esta propiedad
+        binding.cbDisponible.setOnCheckedChangeListener((compoundButton, b) -> rViewModel.setDisponible(b));
 
         rViewModel.setInmueble(getArguments());
         return root;

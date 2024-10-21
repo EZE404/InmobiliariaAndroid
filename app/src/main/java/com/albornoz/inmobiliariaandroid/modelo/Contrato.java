@@ -1,57 +1,99 @@
 package com.albornoz.inmobiliariaandroid.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class Contrato implements Serializable {
 
-    private int idContrato;
-    private String fechaInicio;
-    private String fechaFin;
-    private double montoAlquiler;
+    private int id;
+    private Date desde;
+    private Date hasta;
+    private double monto;
     private Inquilino inquilino;
     private Inmueble inmueble;
+    private String nombreGarante;
+    private String dniGarante;
+    private String telefonoGarante;
+    private String emailGarante;
+
 
     public Contrato() {}
-    public Contrato(int idContrato, String fechaInicio, String fechaFin, double montoAlquiler, Inquilino inquilino, Inmueble inmueble) {
-        this.idContrato = idContrato;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.montoAlquiler = montoAlquiler;
+    public Contrato(int id, Date desde, Date hasta, double monto, Inquilino inquilino, Inmueble inmueble, String nombreGarante, String dniGarante, String telefonoGarante, String emailGarante) {
+        this.id = id;
+        this.desde = desde;
+        this.hasta = hasta;
+        this.monto = monto;
         this.inquilino = inquilino;
         this.inmueble = inmueble;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.telefonoGarante = telefonoGarante;
+        this.emailGarante = emailGarante;
     }
 
-    public int getIdContrato() {
-        return idContrato;
+    public String getNombreGarante() {
+        return nombreGarante;
     }
 
-    public void setIdContrato(int idContrato) {
-        this.idContrato = idContrato;
+    public void setNombreGarante(String nombreGarante) {
+        this.nombreGarante = nombreGarante;
     }
 
-    public String getFechaInicio() {
-        return fechaInicio;
+    public String getDniGarante() {
+        return dniGarante;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setDniGarante(String dniGarante) {
+        this.dniGarante = dniGarante;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public String getTelefonoGarante() {
+        return telefonoGarante;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setTelefonoGarante(String telefonoGarante) {
+        this.telefonoGarante = telefonoGarante;
     }
 
-    public double getMontoAlquiler() {
-        return montoAlquiler;
+    public String getEmailGarante() {
+        return emailGarante;
     }
 
-    public void setMontoAlquiler(double montoAlquiler) {
-        this.montoAlquiler = montoAlquiler;
+    public void setEmailGarante(String emailGarante) {
+        this.emailGarante = emailGarante;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getDesde() {
+        return desde;
+    }
+
+    public void setDesde(Date desde) {
+        this.desde = desde;
+    }
+
+    public Date getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(Date hasta) {
+        this.hasta = hasta;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
 
 
@@ -76,11 +118,11 @@ public class Contrato implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contrato contrato = (Contrato) o;
-        return idContrato == contrato.idContrato;
+        return id == contrato.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idContrato);
+        return Objects.hash(id);
     }
 }

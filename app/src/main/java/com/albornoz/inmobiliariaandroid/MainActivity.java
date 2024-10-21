@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getEmail().observe(this, headerBinding.textViewHeaderEmail::setText);
         viewModel.getAvatarUrl().observe(this, url -> Glide.with(this)
                 .load(url)
+                .circleCrop()
                 .into(headerBinding.imageViewAvatar));
 
         // Llamamos a fetchPropietario para cargar los datos del propietario

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/side_nav_bar"
     tools:context=".ui.realestates.RealEstatesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,4 +20,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scrollbars="vertical"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:layout_gravity="bottom|end"
+        android:contentDescription="Agregar Inmueble"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@color/white"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

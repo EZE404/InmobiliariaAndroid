@@ -1,6 +1,5 @@
 package com.albornoz.inmobiliariaandroid.ui.realestates;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,7 +61,7 @@ public class RealEstatesAdapter extends RecyclerView.Adapter<RealEstatesAdapter.
         holder.tvDetails.setText(String.format("$%s", numeroTexto));
         Glide.with(root.getContext())
                 .load(ApiClientRetrofit.getHost() + i.getImageUrl())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .circleCrop()
                 .into(holder.ivPhoto);
         holder.cvRealEstate.setOnClickListener(view -> {
             Bundle bundle = new Bundle();

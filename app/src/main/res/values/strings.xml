@@ -39,7 +39,7 @@
     <string name="uso_label">Uso</string>
     <string name="ambientes_label">Ambientes</string>
     <string name="propietario_label">Propietario</string>
-    <string name="disponibilidad_label">Disponibilidad</string>
+    <string name="disponibilidad_label">Disponibile</string>
     <string name="nombre_y_apellido_label">Nombre y Apellido</string>
     <string name="lugar_de_trabajo_label">Lugar de Trabajo</string>
     <string name="nombre_del_garante_label">Nombre del Garante</string>
@@ -48,4 +48,15 @@
     <string name="pago_num_label">Número de Pago</string>
     <string name="importe_label">Importe</string>
     <string name="fecha_de_pago_label">Fecha de Pago</string>
+    <string-array name="tipos_inmueble">
+        <item>Local</item>
+        <item>Depósito</item>
+        <item>Casa</item>
+        <item>Depto</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="usos_inmueble">
+        <item>Comercial</item>
+        <item>Residencial</item>
+    </string-array>
 </resources>

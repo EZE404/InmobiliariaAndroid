@@ -151,12 +151,12 @@ public class ApiClient {
         inmuebles.add(casita);
 
         //Contratos
-        Contrato uno=new Contrato(701, "05/01/2020","05/01/2021",17000,mario,otraCasa);
+        Contrato uno=new Contrato(43,new Date(),new Date(),34567, mario, casa, "Fernando Gago", "28456872", "1165328976", "pintita@correo.com");
         contratos.add(uno);
         //Pagos
-        pagos.add(new Pago(900,1,uno,17000,"10/02/2020"));
-        pagos.add(new Pago(901,2,uno,17000,"10/03/2020"));
-        pagos.add(new Pago(902,3,uno,17000,"10/04/2020"));
+        pagos.add(new Pago(900,1,uno,17000,new Date()));
+        pagos.add(new Pago(901,2,uno,17000,new Date()));
+        pagos.add(new Pago(902,3,uno,17000,new Date()));
 
 
 

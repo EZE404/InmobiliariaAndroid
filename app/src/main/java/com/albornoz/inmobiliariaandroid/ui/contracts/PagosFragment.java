@@ -41,18 +41,15 @@ public class PagosFragment extends Fragment {
         View root = binding.getRoot();
         recyclerViewLista = binding.RVLista;
 
-        mViewModel.getPagosMutable().observe(getViewLifecycleOwner(), new Observer<List<Pago>>() {
-            @Override
-            public void onChanged(List<Pago> pagos) {
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-                        getContext(),
-                        LinearLayoutManager.VERTICAL,
-                        false
-                );
-                recyclerViewLista.setLayoutManager(linearLayoutManager);
-                adapter = new PagosAdapter(root, pagos);
-                recyclerViewLista.setAdapter(adapter);
-            }
+        mViewModel.getPagosMutable().observe(getViewLifecycleOwner(), pagos -> {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                    getContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+            );
+            recyclerViewLista.setLayoutManager(linearLayoutManager);
+            adapter = new PagosAdapter(root, pagos);
+            recyclerViewLista.setAdapter(adapter);
         });
 
         mViewModel.setPagosMutable(getArguments());

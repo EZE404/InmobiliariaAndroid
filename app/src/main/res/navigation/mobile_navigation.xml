@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_nav_real_estates_to_realEstateDetailsFragment"
             app:destination="@id/realEstateDetailsFragment" />
+        <action
+            android:id="@+id/action_nav_real_estates_to_addRealEstateFragment"
+            app:destination="@id/addRealEstateFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_tenants"
@@ -95,5 +98,14 @@
         <action
             android:id="@+id/action_pagosFragment_to_contractDetailsFragment"
             app:destination="@id/contractDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRealEstateFragment"
+        android:name="com.albornoz.inmobiliariaandroid.ui.realestates.AddRealEstateFragment"
+        android:label="Agregar Inmueble"
+        tools:layout="@layout/fragment_add_real_estate" >
+        <action
+            android:id="@+id/action_addRealEstateFragment_to_nav_real_estates"
+            app:destination="@id/nav_real_estates" />
     </fragment>
 </navigation>

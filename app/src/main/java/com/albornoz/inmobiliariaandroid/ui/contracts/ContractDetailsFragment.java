@@ -1,6 +1,5 @@
 package com.albornoz.inmobiliariaandroid.ui.contracts;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +15,12 @@ import android.view.ViewGroup;
 
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentContractDetailsBinding;
-import com.albornoz.inmobiliariaandroid.databinding.FragmentTenantDetailsBinding;
-import com.albornoz.inmobiliariaandroid.modelo.Contrato;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+import com.bumptech.glide.Glide;
+
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ContractDetailsFragment extends Fragment {
 
@@ -35,26 +39,37 @@ public class ContractDetailsFragment extends Fragment {
         binding = FragmentContractDetailsBinding.inflate(inflater, container,false);
         View root = binding.getRoot();
 
-        cViewModel.getContratoMutable().observe(getViewLifecycleOwner(), new Observer<Contrato>() {
-            @Override
-            public void onChanged(Contrato c) {
-                // TODO: cargar datos de contrato en la vista
-                binding.tvId.setText(String.valueOf(c.getIdContrato()));
-                binding.tvDesde.setText(c.getFechaInicio());
-                binding.tvHasta.setText(c.getFechaFin());
-                binding.tvMonto.setText("$"+c.getMontoAlquiler());
-                binding.tvInquilino.setText(c.getInquilino().getNombre()+" "+c.getInquilino().getApellido());
-                binding.tvInmueble.setText(c.getInmueble().getDireccion());
-            }
+        cViewModel.getContratoMutable().observe(getViewLifecycleOwner(), c -> {
+            binding.tvAddress.setText(c.getInmueble().getDireccion());
+            Glide.with(this)
+                    .load(ApiClientRetrofit.getHost() + c.getInmueble().getImageUrl())
+                    .circleCrop()
+                    .into(binding.ivInmuebleImage);
+            // Crear un NumberFormat para el locale español
+            NumberFormat formatoEspanol = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+            // Asegurar que el formato utilice 2 decimales
+            formatoEspanol.setMinimumFractionDigits(2);
+            formatoEspanol.setMaximumFractionDigits(2);
+            // Convertir el número a texto
+            String numeroTexto = formatoEspanol.format(c.getMonto());
+            binding.tvMonto.setText(String.format("$%s", numeroTexto));
+            binding.tvId.setText(String.valueOf(c.getId()));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            binding.tvDesde.setText(sdf.format(c.getDesde()));
+            binding.tvHasta.setText(sdf.format(c.getHasta()));
+            binding.tvInquilino.setText(c.getInquilino().getNombre());
+            binding.tvNombreGarante.setText(c.getNombreGarante());
+            binding.tvDniGarante.setText(c.getDniGarante());
+            binding.tvTelGarante.setText(c.getTelefonoGarante());
+            binding.tvEmailGarante.setText(c.getEmailGarante());
         });
 
-        binding.btPagos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cViewModel.openPagos(root);
-            }
+        // binding.btPagos.setOnClickListener(view -> cViewModel.openPagos(root));
+        binding.btPagos.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("contrato", cViewModel.getContratoMutable().getValue());
+            Navigation.findNavController(root).navigate(R.id.pagosFragment, bundle);
         });
-
         cViewModel.setContrato(getArguments());
         return root;
     }

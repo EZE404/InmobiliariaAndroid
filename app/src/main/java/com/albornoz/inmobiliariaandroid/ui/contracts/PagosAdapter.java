@@ -15,7 +15,10 @@ import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Pago;
 import com.albornoz.inmobiliariaandroid.request.ApiClient;
 
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder> {
 
@@ -23,7 +26,6 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
     private Context context;
     private List<Pago> pagos;
     private View root;
-    private ApiClient api;
 
     public PagosAdapter(
             View root,
@@ -33,7 +35,6 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
         this.layoutInflater = LayoutInflater.from(root.getContext());
         this.context = root.getContext();
         this.pagos = pagos;
-        this.api = ApiClient.getApi();
     }
 
     @NonNull
@@ -46,11 +47,19 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
     @Override // Se ejecuta por cada movie de la lista
     public void onBindViewHolder(@NonNull PagosAdapter.MiViewHolder holder, int position) {
         Pago p = pagos.get(position);
-        holder.tvId.setText("Código de Pago: "+p.getIdPago());
-        holder.tvNum.setText("Número de Pago: "+p.getNumero());
-        holder.tvIdContrato.setText("Código de Contrato: "+p.getContrato().getIdContrato());
-        holder.tvImporte.setText("Importe: $"+p.getImporte());
-        holder.tvFecha.setText("Fecha de Pago: "+p.getFechaDePago());
+        holder.tvId.setText("Código de Pago: "+p.getId());
+        //holder.tvNum.setText("Número de Pago: "+p.getNumero());
+        //holder.tvIdContrato.setText("Código de Contrato: "+p.getContrato().getId());
+        // Crear un NumberFormat para el locale español
+        NumberFormat formatoEspanol = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+        // Asegurar que el formato utilice 2 decimales
+        formatoEspanol.setMinimumFractionDigits(2);
+        formatoEspanol.setMaximumFractionDigits(2);
+        // Convertir el número a texto
+        String numeroTexto = formatoEspanol.format(p.getMonto());
+        holder.tvImporte.setText(String.format("Importe: $%s", numeroTexto));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        holder.tvFecha.setText(String.format("Fecha de Pago: %s", sdf.format(p.getFecha())));
     }
 
     @Override // Retorna la cardinalidad de la lista de movies
@@ -60,7 +69,11 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
 
     public class MiViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvId, tvNum, tvIdContrato, tvImporte, tvFecha;
+        private TextView tvId;
+        private TextView tvNum;
+        private TextView tvIdContrato;
+        private TextView tvImporte;
+        private TextView tvFecha;
 
         public MiViewHolder(@NonNull View itemView) {
             super(itemView);

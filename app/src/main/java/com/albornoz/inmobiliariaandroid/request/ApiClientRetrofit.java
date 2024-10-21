@@ -209,6 +209,9 @@ public class ApiClientRetrofit {
         @GET("inmuebles/getinmueblesdepropietario")
         Call<List<Inmueble>> getInmueblesByPropietario();
 
+        @GET("inmuebles/getDePropietarioSusInmueblesConContratos")
+        Call<List<Inmueble>> getInmueblesWithContractsByPropietario();
+
         @GET("inmuebles/{id}")
         Call<Inmueble> getInmueble(@Path("id") int id);
 
@@ -217,6 +220,9 @@ public class ApiClientRetrofit {
 
         @PUT("inmuebles/{id}")
         Call<Inmueble> actualizarInmueble(@Path("id") int id, @Body Inmueble inmueble);
+
+        @PUT("inmuebles/actualizarDisponibilidadInmueble")
+        Call<Void> actualizarDisponibilidadInmueble(@Body Inmueble inmueble);
 
         @DELETE("inmuebles/{id}")
         Call<Void> eliminarInmueble(@Path("id") int id);
@@ -244,6 +250,10 @@ public class ApiClientRetrofit {
         @GET("contratos/{id}")
         Call<Contrato> getContrato(@Path("id") int id);
 
+        //obtenerContratoVigente
+        @GET("contratos/getcontratoactualdeinmueble/{id}")
+        Call<Contrato> getContratoActualDeInmueble(@Path("id") int id);
+
         @POST("contratos")
         Call<Contrato> crearContrato(@Body Contrato contrato);
 
@@ -256,6 +266,9 @@ public class ApiClientRetrofit {
         // CRUD para Pagos
         @GET("pagos")
         Call<List<Pago>> getPagos();
+
+        @GET("pagos/getpagosdecontrato/{id}")
+        Call<List<Pago>> getPagosDeContrato(@Path("id") int id);
 
         @GET("pagos/{id}")
         Call<Pago> getPago(@Path("id") int id);
