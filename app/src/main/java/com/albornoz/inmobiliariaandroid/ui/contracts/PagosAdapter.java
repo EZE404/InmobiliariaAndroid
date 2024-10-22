@@ -70,16 +70,16 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.MiViewHolder
     public class MiViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvId;
-        private TextView tvNum;
-        private TextView tvIdContrato;
+        //private TextView tvNum;
+        //private TextView tvIdContrato;
         private TextView tvImporte;
         private TextView tvFecha;
 
         public MiViewHolder(@NonNull View itemView) {
             super(itemView);
             tvId = itemView.findViewById(R.id.tvIdPago);
-            tvNum = itemView.findViewById(R.id.tvNum);
-            tvIdContrato = itemView.findViewById(R.id.tvIdContrato);
+            //tvNum = itemView.findViewById(R.id.tvNum);
+            //tvIdContrato = itemView.findViewById(R.id.tvIdContrato);
             tvImporte = itemView.findViewById(R.id.tvImporte);
             tvFecha = itemView.findViewById(R.id.tvFecha);
         }

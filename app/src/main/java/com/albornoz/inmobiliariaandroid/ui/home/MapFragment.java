@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.albornoz.inmobiliariaandroid.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -21,23 +20,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment {
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+    private OnMapReadyCallback callback = googleMap -> {
+        LatLng inmobiliaria = new LatLng(-33.3062537, -66.3323554);
 
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
-            LatLng inmobiliaria = new LatLng(-33.3062537, -66.3323554);
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(inmobiliaria)
+                .zoom(17)
+                .bearing(0)
+                .tilt(0)
+                .build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
 
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(inmobiliaria)
-                    .zoom(17)
-                    .bearing(0)
-                    .tilt(0)
-                    .build();
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-
-            googleMap.animateCamera(cameraUpdate);
-            googleMap.addMarker(new MarkerOptions().position(inmobiliaria).title("D'Williams Bienes Raices"));
-        }
+        googleMap.animateCamera(cameraUpdate);
+        googleMap.addMarker(new MarkerOptions().position(inmobiliaria).title("D'Williams Bienes Raices"));
     };
 
     @Nullable
@@ -53,8 +48,11 @@ public class MapFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
+        if (mapFragment == null) {
+            // Si no existe, crea una nueva instancia
+            mapFragment = new SupportMapFragment();
+            getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
         }
+        mapFragment.getMapAsync(callback);
     }
 }
