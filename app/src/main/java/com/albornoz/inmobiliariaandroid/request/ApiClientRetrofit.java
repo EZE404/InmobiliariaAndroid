@@ -114,6 +114,7 @@ public class ApiClientRetrofit {
                     .registerTypeAdapter(Date.class, new DateSerializer())
                     .registerTypeAdapter(Date.class, new DateDeserializer())
                     .create();
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL) // La URL base de la API
                     .client(httpClient.build()) // El cliente HTTP configurado
@@ -233,6 +234,9 @@ public class ApiClientRetrofit {
 
         @GET("inquilinos/{id}")
         Call<Inquilino> getInquilino(@Path("id") int id);
+
+        @GET("inquilinos/getinquilinodeinmueble/{id}")
+        Call<Inquilino> getInquilinoDeInmueble(@Path("id") int id);
 
         @POST("inquilinos")
         Call<Inquilino> crearInquilino(@Body Inquilino inquilino);

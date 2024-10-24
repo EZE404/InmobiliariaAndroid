@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -27,7 +27,6 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
     private Context context;
     private List<Inmueble> inmuebles;
     private View root;
-    private ApiClient api;
 
     public TenantsAdapter(
             View root,
@@ -37,7 +36,6 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
         this.layoutInflater = LayoutInflater.from(root.getContext());
         this.context = root.getContext();
         this.inmuebles = inmuebles;
-        this.api = ApiClient.getApi();
     }
 
     @NonNull
@@ -51,18 +49,16 @@ public class TenantsAdapter extends RecyclerView.Adapter<TenantsAdapter.MiViewHo
     public void onBindViewHolder(@NonNull TenantsAdapter.MiViewHolder holder, int position) {
         Inmueble i = inmuebles.get(position);
         holder.tvAddress.setText(i.getDireccion());
-        holder.tvDetails.setText(api.obtenerInquilino(i).getNombre()+" "+api.obtenerInquilino(i).getApellido());
+        holder.tvDetails.setText(String.format("%s - %s", i.getTipo(), i.getUso()));
         Glide.with(root.getContext())
-                .load(i.getImageUrl())
+                .load(ApiClientRetrofit.getHost() + i.getImageUrl())
+                .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivPhoto);
-        holder.cvRealEstate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("realEstate", i);
-                Navigation.findNavController(root).navigate(R.id.tenantDetailsFragment, bundle);
-            }
+        holder.cvRealEstate.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("realEstate", i);
+            Navigation.findNavController(root).navigate(R.id.tenantDetailsFragment, bundle);
         });
     }
 

@@ -4,44 +4,40 @@ import java.io.Serializable;
 
 public class Inquilino implements Serializable {
 
-    private int idInquilino;
-    private Long DNI;
+    private int id;
+    private String dni;
     private String nombre;
     private String apellido;
-    private String lugarDeTrabajo;
+    private String direccionTrabajo;
     private String email;
     private String telefono;
-    private String nombreGarante;
-    private String telefonoGarante;
 
     public Inquilino() {}
 
-    public Inquilino(int idInquilino, Long DNI, String nombre, String apellido, String lugarDeTrabajo, String email, String telefono, String nombreGarante, String telefonoGarante) {
-        this.idInquilino = idInquilino;
-        this.DNI = DNI;
+    public Inquilino(int id, String dni, String nombre, String apellido, String direccionTrabajo, String email, String telefono) {
+        this.id = id;
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.lugarDeTrabajo = lugarDeTrabajo;
+        this.direccionTrabajo = direccionTrabajo;
         this.email = email;
         this.telefono = telefono;
-        this.nombreGarante = nombreGarante;
-        this.telefonoGarante = telefonoGarante;
     }
 
-    public int getIdInquilino() {
-        return idInquilino;
+    public int getId() {
+        return id;
     }
 
-    public void setIdInquilino(int idInquilino) {
-        this.idInquilino = idInquilino;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Long getDNI() {
-        return DNI;
+    public String getDni() {
+        return dni;
     }
 
-    public void setDNI(Long DNI) {
-        this.DNI = DNI;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -60,12 +56,12 @@ public class Inquilino implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getLugarDeTrabajo() {
-        return lugarDeTrabajo;
+    public String getDireccionTrabajo() {
+        return direccionTrabajo;
     }
 
-    public void setLugarDeTrabajo(String lugarDeTrabajo) {
-        this.lugarDeTrabajo = lugarDeTrabajo;
+    public void setDireccionTrabajo(String direccionTrabajo) {
+        this.direccionTrabajo = direccionTrabajo;
     }
 
     public String getEmail() {
@@ -84,19 +80,4 @@ public class Inquilino implements Serializable {
         this.telefono = telefono;
     }
 
-    public String getNombreGarante() {
-        return nombreGarante;
-    }
-
-    public void setNombreGarante(String nombreGarante) {
-        this.nombreGarante = nombreGarante;
-    }
-
-    public String getTelefonoGarante() {
-        return telefonoGarante;
-    }
-
-    public void setTelefonoGarante(String telefonoGarante) {
-        this.telefonoGarante = telefonoGarante;
-    }
 }

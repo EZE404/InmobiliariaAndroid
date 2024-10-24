@@ -1,20 +1,29 @@
 package com.albornoz.inmobiliariaandroid.ui.tenants;
 
+import android.app.Application;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 import java.util.List;
 
-public class TenantsViewModel extends ViewModel {
-    private ApiClient api;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class TenantsViewModel extends AndroidViewModel {
+    private ApiClientRetrofit.InmobiliariaService service;
     private MutableLiveData<List<Inmueble>> inmueblesMutable;
 
-    public TenantsViewModel() {
-        this.api = ApiClient.getApi();
+    public TenantsViewModel(@NonNull Application application) {
+        super(application);
+        this.service = ApiClientRetrofit.getInmobiliariaService(getApplication());
     }
 
     public LiveData<List<Inmueble>> getRealEstatesMutable() {
@@ -25,6 +34,21 @@ public class TenantsViewModel extends ViewModel {
     }
 
     public void setInmueblesMutable() {
-        this.inmueblesMutable.setValue(api.obtenerPropiedadesAlquiladas());
+        service.getInmueblesWithContractsByPropietario().enqueue(new Callback<List<Inmueble>>() {
+            @Override
+            public void onResponse(Call<List<Inmueble>> call, Response<List<Inmueble>> response) {
+                if (response.isSuccessful()) {
+                    inmueblesMutable.setValue(response.body());
+                } else {
+                    inmueblesMutable.setValue(null);
+                    Toast.makeText(getApplication(), "Error en la solicitud", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Inmueble>> call, Throwable throwable) {
+                Toast.makeText(getApplication(), "Error al obtener inmuebles", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

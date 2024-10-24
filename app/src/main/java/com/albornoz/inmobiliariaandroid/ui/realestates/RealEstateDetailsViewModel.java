@@ -2,17 +2,14 @@ package com.albornoz.inmobiliariaandroid.ui.realestates;
 
 import android.app.Application;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 import retrofit2.Call;

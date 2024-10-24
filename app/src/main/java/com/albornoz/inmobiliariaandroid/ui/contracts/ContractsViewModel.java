@@ -7,10 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 import java.util.List;

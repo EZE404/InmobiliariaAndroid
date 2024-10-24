@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.modelo.Pago;
-import com.albornoz.inmobiliariaandroid.request.ApiClient;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
