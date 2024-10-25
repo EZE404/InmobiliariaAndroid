@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,6 +129,16 @@ public class AddRealEstateFragment extends Fragment {
                 binding.ivImage.setImageBitmap(null);  // Quitar la imagen
                 binding.btnRemoveImage.setVisibility(View.GONE);  // Ocultar el botón "Quitar Imagen"
                 Toast.makeText(getContext(), "Imagen eliminada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Observar la bandera que indica si el inmueble fue creado, entonces ir a fragment de detalles
+        mViewModel.getOpenSavedRealEstate().observe(getViewLifecycleOwner(), success -> {
+            if (success) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("realEstate", mViewModel.getRealEstate().getValue());
+                NavController navController = NavHostFragment.findNavController(this);
+                navController.navigate(R.id.action_addRealEstateFragment_to_realEstateDetailsFragment, bundle);
             }
         });
     }

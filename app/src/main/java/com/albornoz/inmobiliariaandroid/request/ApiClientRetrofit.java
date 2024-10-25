@@ -218,7 +218,7 @@ public class ApiClientRetrofit {
 
         @Multipart
         @POST("inmuebles/crearinmueble")
-        Call<Void> crearInmueble(
+        Call<Inmueble> crearInmueble(
                 @Part("tiponombre") RequestBody tipo,
                 @Part("usonombre") RequestBody uso,
                 @Part("direccion") RequestBody direccion,

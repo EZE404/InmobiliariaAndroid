@@ -107,5 +107,8 @@
         <action
             android:id="@+id/action_addRealEstateFragment_to_nav_real_estates"
             app:destination="@id/nav_real_estates" />
+        <action
+            android:id="@+id/action_addRealEstateFragment_to_realEstateDetailsFragment"
+            app:destination="@id/realEstateDetailsFragment" />
     </fragment>
 </navigation>

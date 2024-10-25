@@ -6,11 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentRealEstateDetailsBinding;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 import com.bumptech.glide.Glide;
@@ -78,5 +82,22 @@ public class RealEstateDetailsFragment extends Fragment {
         rViewModel.setInmueble(getArguments());
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Añadir un callback personalizado para manejar el botón "atrás"
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        // Navegar manualmente hacia RealEstatesFragment
+                        NavController navController = NavHostFragment.findNavController(RealEstateDetailsFragment.this);
+                        navController.navigate(R.id.action_realEstateDetailsFragment_to_nav_real_estates);  // Ir a RealEstatesFragment
+                    }
+                });
     }
 }

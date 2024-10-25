@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 import java.io.File;
@@ -28,6 +29,13 @@ public class AddRealEstateViewModel extends AndroidViewModel {
 
     private ApiClientRetrofit.InmobiliariaService service;
     private final MutableLiveData<Bitmap> selectedImageBitmap = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> openSavedRealEstate = new MutableLiveData<>();
+
+    public MutableLiveData<Inmueble> getRealEstate() {
+        return inmueble;
+    }
+
+    private final MutableLiveData<Inmueble> inmueble = new MutableLiveData<>();
 
     public AddRealEstateViewModel(@NonNull Application application) {
         super(application);
@@ -47,6 +55,9 @@ public class AddRealEstateViewModel extends AndroidViewModel {
     // Obtener el LiveData de la imagen seleccionada
     public LiveData<Bitmap> getSelectedImageBitmap() {
         return selectedImageBitmap;
+    }
+    public LiveData<Boolean> getOpenSavedRealEstate() {
+        return openSavedRealEstate;
     }
 
     // Metodo para eliminar la imagen seleccionada
@@ -95,18 +106,20 @@ public class AddRealEstateViewModel extends AndroidViewModel {
             RequestBody ambientesBody = RequestBody.create(MediaType.parse("text/plain"), ambientes);
 
             service.crearInmueble(tipoBody, usoBody, direccionBody, precioBody, ambientesBody, imagePart)
-                    .enqueue(new Callback<Void>() {
+                    .enqueue(new Callback<Inmueble>() {
                         @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
+                        public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                             if (response.isSuccessful()) {
                                 Toast.makeText(getApplication(), "Inmueble subido correctamente", Toast.LENGTH_SHORT).show();
+                                inmueble.setValue(response.body());
+                                openSavedRealEstate.setValue(true);
                             } else {
                                 Toast.makeText(getApplication(), "Error al subir inmueble", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
+                        public void onFailure(Call<Inmueble> call, Throwable t) {
                             Toast.makeText(getApplication(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
