@@ -1,21 +1,17 @@
 package com.albornoz.inmobiliariaandroid.ui.realestates;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.albornoz.inmobiliariaandroid.databinding.FragmentRealEstateDetailsBinding;
-import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -39,34 +35,48 @@ public class RealEstateDetailsFragment extends Fragment {
         binding = FragmentRealEstateDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Crear un listener para el checkbox
+        CompoundButton.OnCheckedChangeListener checkBoxListener = (compoundButton, isChecked) -> rViewModel.setDisponible(isChecked);
+
+        // Observador para cargar los datos del inmueble
         rViewModel.getInmuebleMutable().observe(getViewLifecycleOwner(), i -> {
             // Crear un NumberFormat para el locale español
             NumberFormat formatoEspanol = NumberFormat.getNumberInstance(new Locale("es", "AR"));
-            // Asegurar que el formato utilice 2 decimales
             formatoEspanol.setMinimumFractionDigits(2);
             formatoEspanol.setMaximumFractionDigits(2);
-            // Convertir el número a texto
             String numeroTexto = formatoEspanol.format(i.getPrecio());
+
+            // Asignar los valores a las views
             binding.tvPrecio.setText(String.format("$%s", numeroTexto));
             binding.tvAddress.setText(i.getDireccion());
             binding.tvTipo.setText(i.getTipo());
             binding.tvUso.setText(i.getUso());
             binding.tvAmbientes.setText(String.valueOf(i.getAmbientes()));
+
+            // Eliminar temporalmente el listener antes de actualizar el checkbox programáticamente
+            binding.cbDisponible.setOnCheckedChangeListener(null);
             binding.cbDisponible.setChecked(i.isDisponible());
+            // Restaurar el listener después de actualizar el valor
+            binding.cbDisponible.setOnCheckedChangeListener(checkBoxListener);
+
+            // Cargar la imagen con Glide
             Glide.with(root.getContext())
                     .load(ApiClientRetrofit.getHost() + i.getImageUrl())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.ivPhoto);
         });
 
+        // Observador para habilitar o deshabilitar el checkbox
         rViewModel.getDisponibleCheckEnabledMutable().observe(getViewLifecycleOwner(), enabled ->
-            binding.cbDisponible.setEnabled(enabled)
+                binding.cbDisponible.setEnabled(enabled)
         );
 
-        // TODO: cuando el checkbox cambie, hacer que el viewmodel cambie en el server esta propiedad
-        binding.cbDisponible.setOnCheckedChangeListener((compoundButton, b) -> rViewModel.setDisponible(b));
+        // Inicializar el listener en el checkbox
+        binding.cbDisponible.setOnCheckedChangeListener(checkBoxListener);
 
+        // Cargar el inmueble según los argumentos
         rViewModel.setInmueble(getArguments());
+
         return root;
     }
 }
