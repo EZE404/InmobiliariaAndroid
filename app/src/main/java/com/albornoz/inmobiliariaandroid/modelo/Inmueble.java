@@ -17,8 +17,7 @@ public class Inmueble implements Serializable {
     private int ambientes;
     private double precio;
     private Propietario propietario;
-    //En falso significa que el innmueble no está disponible por alguna falla en el mismo.
-    private boolean disponible =true;
+    private boolean disponible;
     private String imageUrl;
 
     public Inmueble(int id, String direccion, String uso, String tipo, int ambientes, double precio, Propietario propietario, boolean disponible, String imageUrl) {

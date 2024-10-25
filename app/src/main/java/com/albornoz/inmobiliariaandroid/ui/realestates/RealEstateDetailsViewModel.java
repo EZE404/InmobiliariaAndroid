@@ -20,13 +20,12 @@ public class RealEstateDetailsViewModel extends AndroidViewModel {
     private ApiClientRetrofit.InmobiliariaService service;
     private MutableLiveData<Inmueble> iMutable;
     private MutableLiveData<Boolean> disponibleCheckEnabledMutable;
-    private boolean firstLoad = true;
+    //private boolean firstLoad = true;
 
     public RealEstateDetailsViewModel(@NonNull Application application) {
         super(application);
         this.service = ApiClientRetrofit.getInmobiliariaService(getApplication());
     }
-
 
     public void setInmueble(Bundle b) {
         iMutable.setValue((Inmueble)b.getSerializable("realEstate"));
@@ -52,11 +51,11 @@ public class RealEstateDetailsViewModel extends AndroidViewModel {
         Inmueble i = iMutable.getValue();
         //este condicional solo sucede la primera vez, y es para que no se ejecute el cambio de estado en el servidor
         //cuando se abre la pantalla por primera vez y se carga el checkbox de manera programática.
-        if (firstLoad) {
+        /*if (firstLoad) {
             firstLoad = false;
             disponibleCheckEnabledMutable.setValue(true);
             return;
-        }
+        }*/
         i.setDisponible(b);
         service.actualizarDisponibilidadInmueble(i).enqueue(new Callback<Void>() {
             @Override

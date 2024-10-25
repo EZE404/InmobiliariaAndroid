@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import okhttp3.Interceptor;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -46,6 +47,8 @@ public class ApiClientRetrofit {
         if (inmobiliariaService == null) {
             // Inicializa SharedPreferences si aún no está inicializado
             sharedPreferences = context.getSharedPreferences("token_prefs", Context.MODE_PRIVATE);
+            // Construimos un cliente HTTP utilizando OkHttpClient para manejar las solicitudes
+            OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
             // Si vamos a trabajar con https, la rutina para aceptar certs. autofirmados es:
             /*TrustManager[] trustAllCerts = new TrustManager[]{
@@ -78,9 +81,6 @@ public class ApiClientRetrofit {
                         return true;
                     }
                 });*/
-
-            // Construimos un cliente HTTP utilizando OkHttpClient para manejar las solicitudes
-            OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
             // Añadimos un interceptor para manejar las cabeceras de autorización
             httpClient.addInterceptor(chain -> {
@@ -216,8 +216,17 @@ public class ApiClientRetrofit {
         @GET("inmuebles/{id}")
         Call<Inmueble> getInmueble(@Path("id") int id);
 
-        @POST("inmuebles")
-        Call<Inmueble> crearInmueble(@Body Inmueble inmueble);
+        @Multipart
+        @POST("inmuebles/crearinmueble")
+        Call<Void> crearInmueble(
+                @Part("tiponombre") RequestBody tipo,
+                @Part("usonombre") RequestBody uso,
+                @Part("direccion") RequestBody direccion,
+                @Part("precio") RequestBody precio,
+                @Part("ambientes") RequestBody ambientes,
+                @Part MultipartBody.Part image // Este es el archivo de imagen
+        );
+
 
         @PUT("inmuebles/{id}")
         Call<Inmueble> actualizarInmueble(@Path("id") int id, @Body Inmueble inmueble);

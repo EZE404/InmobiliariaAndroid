@@ -112,9 +112,57 @@
         app:layout_constraintTop_toBottomOf="@id/label_precio"
         app:layout_constraintWidth_percent="0.8" />
 
+    <!-- ImageView para la imagen -->
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@+id/edit_precio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonsContainer"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Contenedor para los botones, centrado entre la imagen y el borde derecho -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivImage"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp">
+
+        <!-- Botón para seleccionar imagen -->
+        <Button
+            android:id="@+id/btnAddImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elegir Imagen"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Botón para eliminar imagen -->
+        <Button
+            android:id="@+id/btnRemoveImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quitar Imagen"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- Botón Guardar -->
     <Button
-        android:id="@+id/btn_guardar"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Guardar"
