@@ -5,7 +5,6 @@ import static android.Manifest.permission.CALL_PHONE;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
@@ -16,54 +15,43 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.albornoz.inmobiliariaandroid.modelo.Propietario;
-import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
+import com.albornoz.inmobiliariaandroid.databinding.ActivityLoginBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel viewModel;
-    private EditText editTextEmail, editTextPass;
-    private Button buttonLogin;
-    private TextView errorLogin;
     // Necesarios para ShakeDetection
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initializeViews();
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        initializeSensor();
         getPermissions();
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
                 .create(LoginViewModel.class);
-        viewModel.getErrorVisibility().observe(this, visibility -> errorLogin.setVisibility(visibility));
+        viewModel.getErrorVisibility().observe(this, visibility -> binding.textViewLoginError.setVisibility(visibility));
 
         //Button listener
-        buttonLogin.setOnClickListener(view -> viewModel.login(
-                editTextEmail.getText().toString(),
-                editTextPass.getText().toString()
+        binding.buttonLogin.setOnClickListener(view -> viewModel.login(
+                binding.editTextEmailAddress.getText().toString(),
+                binding.editTextPassword.getText().toString()
         ));
     }
 
-    private void initializeViews() {
-        editTextEmail = findViewById(R.id.editTextEmailAddress);
-        editTextPass = findViewById(R.id.editTextPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        errorLogin = findViewById(R.id.textViewLoginError);
+    private void initializeSensor() {
         // Necesarios para ShakeDetection
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
@@ -127,9 +115,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        editTextPass.setText("");
-        editTextEmail.setText("");
-        editTextEmail.requestFocus();
+        binding.editTextPassword.setText("");
+        binding.editTextEmailAddress.setText("");
+        binding.editTextEmailAddress.requestFocus();
         // Se registra el listener del sensor cada vez que la vista login se retoma
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
     }

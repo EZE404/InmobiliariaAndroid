@@ -48,7 +48,7 @@ public class PagosFragment extends Fragment {
                     false
             );
             recyclerViewLista.setLayoutManager(linearLayoutManager);
-            adapter = new PagosAdapter(root, pagos);
+            adapter = new PagosAdapter(pagos);
             recyclerViewLista.setAdapter(adapter);
         });
 
