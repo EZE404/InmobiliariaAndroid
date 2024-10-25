@@ -37,6 +37,7 @@ public class AddRealEstateFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Usar View Binding para inflar el layout
         binding = FragmentAddRealEstateBinding.inflate(inflater, container, false);
+        binding.btnRemoveImage.setVisibility(View.GONE);
         View view = binding.getRoot();
         mViewModel = new ViewModelProvider(this).get(AddRealEstateViewModel.class);
 
