@@ -1,6 +1,7 @@
 package com.albornoz.inmobiliariaandroid.modelo;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -21,7 +22,8 @@ public class Propietario implements Serializable {
     private String direccion;
     private String avatarUrl; // Coincide con la API
 
-    public Propietario() {}
+    public Propietario() {
+    }
 
     public Propietario(int id, String dni, String nombre, String apellido, Date fechaNacimiento, String email, String clave, String telefono, String direccion, String avatarUrl) {
         this.id = id;

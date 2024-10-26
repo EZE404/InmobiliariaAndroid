@@ -1,28 +1,21 @@
 package com.albornoz.inmobiliariaandroid.ui.realestates;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.albornoz.inmobiliariaandroid.R;
-import com.albornoz.inmobiliariaandroid.databinding.FragmentProfileBinding;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentRealEstatesBinding;
-import com.albornoz.inmobiliariaandroid.modelo.Inmueble;
-
-import java.util.List;
 
 public class RealEstatesFragment extends Fragment {
 

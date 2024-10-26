@@ -31,9 +31,11 @@ public class Inmueble implements Serializable {
         this.disponible = disponible;
         this.imageUrl = imageUrl;
     }
+
     public Inmueble() {
 
     }
+
     public int getId() {
         return id;
     }

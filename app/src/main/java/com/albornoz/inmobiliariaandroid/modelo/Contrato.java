@@ -18,7 +18,9 @@ public class Contrato implements Serializable {
     private String emailGarante;
 
 
-    public Contrato() {}
+    public Contrato() {
+    }
+
     public Contrato(int id, Date desde, Date hasta, double monto, Inquilino inquilino, Inmueble inmueble, String nombreGarante, String dniGarante, String telefonoGarante, String emailGarante) {
         this.id = id;
         this.desde = desde;

@@ -8,159 +8,175 @@
     android:padding="16dp"
     tools:context=".ui.realestates.AddRealEstateFragment">
 
-    <!-- Dirección -->
-    <TextView
-        android:id="@+id/label_direccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dirección"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edit_direccion"
+    <!-- Envolver el contenido en ScrollView -->
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese la dirección"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_direccion"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Tipo -->
-    <TextView
-        android:id="@+id/label_tipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/edit_direccion"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        <!-- Layout que contiene todos los elementos de entrada -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/spinner_tipo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_tipo"
-        app:layout_constraintWidth_percent="0.8" />
+            <!-- Dirección -->
+            <TextView
+                android:id="@+id/label_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Uso -->
-    <TextView
-        android:id="@+id/label_uso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uso"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/spinner_tipo"
-        app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:id="@+id/edit_direccion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese la dirección"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_direccion"
+                app:layout_constraintWidth_percent="0.8" />
 
-    <Spinner
-        android:id="@+id/spinner_uso"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_uso"
-        app:layout_constraintWidth_percent="0.8" />
+            <!-- Tipo -->
+            <TextView
+                android:id="@+id/label_tipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/edit_direccion"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" />
 
-    <!-- Ambientes -->
-    <TextView
-        android:id="@+id/label_ambientes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ambientes"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/spinner_uso"
-        app:layout_constraintStart_toStartOf="parent" />
+            <Spinner
+                android:id="@+id/spinner_tipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_tipo"
+                app:layout_constraintWidth_percent="0.8" />
 
-    <EditText
-        android:id="@+id/edit_ambientes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="Ingrese el número de ambientes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_ambientes"
-        app:layout_constraintWidth_percent="0.8" />
+            <!-- Uso -->
+            <TextView
+                android:id="@+id/label_uso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uso"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/spinner_tipo"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Precio -->
-    <TextView
-        android:id="@+id/label_precio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_ambientes"
-        app:layout_constraintStart_toStartOf="parent" />
+            <Spinner
+                android:id="@+id/spinner_uso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_uso"
+                app:layout_constraintWidth_percent="0.8" />
 
-    <EditText
-        android:id="@+id/edit_precio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Ingrese el precio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_precio"
-        app:layout_constraintWidth_percent="0.8" />
+            <!-- Ambientes -->
+            <TextView
+                android:id="@+id/label_ambientes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambientes"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/spinner_uso"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- ImageView para la imagen -->
+            <EditText
+                android:id="@+id/edit_ambientes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Ingrese el número de ambientes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_ambientes"
+                app:layout_constraintWidth_percent="0.8" />
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@+id/edit_precio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonsContainer"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp" />
+            <!-- Precio -->
+            <TextView
+                android:id="@+id/label_precio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/edit_ambientes"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Contenedor para los botones, centrado entre la imagen y el borde derecho -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/buttonsContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/ivImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivImage"
-        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp">
+            <EditText
+                android:id="@+id/edit_precio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Ingrese el precio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_precio"
+                app:layout_constraintWidth_percent="0.8" />
 
-        <!-- Botón para seleccionar imagen -->
-        <Button
-            android:id="@+id/btnAddImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Elegir Imagen"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <!-- ImageView para la imagen -->
 
-        <!-- Botón para eliminar imagen -->
-        <Button
-            android:id="@+id/btnRemoveImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quitar Imagen"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@+id/edit_precio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonsContainer"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp" />
 
-    <!-- Botón Guardar -->
+            <!-- Contenedor para los botones, centrado entre la imagen y el borde derecho -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonsContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/ivImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivImage"
+                app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp">
+
+                <!-- Botón para seleccionar imagen -->
+                <Button
+                    android:id="@+id/btnAddImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Elegir Imagen"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Botón para eliminar imagen -->
+                <Button
+                    android:id="@+id/btnRemoveImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quitar Imagen"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Botón Guardar fuera del ScrollView -->
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"

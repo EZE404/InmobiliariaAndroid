@@ -1,8 +1,9 @@
 package com.albornoz.inmobiliariaandroid.tools;
 
-import com.google.gson.JsonSerializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

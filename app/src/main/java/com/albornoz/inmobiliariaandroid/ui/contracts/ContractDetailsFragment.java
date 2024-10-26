@@ -1,17 +1,15 @@
 package com.albornoz.inmobiliariaandroid.ui.contracts;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.albornoz.inmobiliariaandroid.R;
 import com.albornoz.inmobiliariaandroid.databinding.FragmentContractDetailsBinding;
@@ -36,7 +34,7 @@ public class ContractDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         cViewModel = new ViewModelProvider(this).get(ContractDetailsViewModel.class);
-        binding = FragmentContractDetailsBinding.inflate(inflater, container,false);
+        binding = FragmentContractDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         cViewModel.getContratoMutable().observe(getViewLifecycleOwner(), c -> {

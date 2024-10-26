@@ -42,6 +42,7 @@ public class PagosViewModel extends AndroidViewModel {
             public void onResponse(Call<List<Pago>> call, Response<List<Pago>> response) {
                 pagosMutable.setValue(response.body());
             }
+
             @Override
             public void onFailure(Call<List<Pago>> call, Throwable t) {
                 pagosMutable.setValue(null);

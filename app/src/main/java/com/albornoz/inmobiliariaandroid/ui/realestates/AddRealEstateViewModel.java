@@ -56,6 +56,7 @@ public class AddRealEstateViewModel extends AndroidViewModel {
     public LiveData<Bitmap> getSelectedImageBitmap() {
         return selectedImageBitmap;
     }
+
     public LiveData<Boolean> getOpenSavedRealEstate() {
         return openSavedRealEstate;
     }

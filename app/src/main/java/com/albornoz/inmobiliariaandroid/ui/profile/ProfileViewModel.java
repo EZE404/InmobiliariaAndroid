@@ -77,6 +77,7 @@ public class ProfileViewModel extends AndroidViewModel {
         }
         return buttonSaveVisibility;
     }
+
     public LiveData<Integer> getButtonDateVisibility() {
         if (buttonDateVisibility == null) {
             buttonDateVisibility = new MutableLiveData<>();

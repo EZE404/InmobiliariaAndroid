@@ -2,10 +2,6 @@ package com.albornoz.inmobiliariaandroid;
 
 import static android.Manifest.permission.CALL_PHONE;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,9 +11,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.albornoz.inmobiliariaandroid.databinding.ActivityLoginBinding;
 
@@ -78,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             String[] permisos = new String[listaPermisos.size()];
             listaPermisos.toArray(permisos);
 
-            if (permisos.length>0) {
+            if (permisos.length > 0) {
                 Log.d("permisos", "dentro del if de requestPermissions");
                 ActivityCompat.requestPermissions(this, permisos, 100);
             } else {
@@ -119,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.editTextEmailAddress.setText("");
         binding.editTextEmailAddress.requestFocus();
         // Se registra el listener del sensor cada vez que la vista login se retoma
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
     @Override

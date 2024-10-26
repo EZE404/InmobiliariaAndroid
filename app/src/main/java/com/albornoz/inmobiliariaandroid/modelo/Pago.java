@@ -12,7 +12,8 @@ public class Pago implements Serializable {
     //private String fecha;
     private Date fecha;
 
-    public Pago() {}
+    public Pago() {
+    }
 
     public Pago(int id, int numero, Contrato contrato, double monto, Date fecha) {
         this.id = id;

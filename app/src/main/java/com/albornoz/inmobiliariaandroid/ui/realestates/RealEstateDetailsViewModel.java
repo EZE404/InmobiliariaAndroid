@@ -28,7 +28,7 @@ public class RealEstateDetailsViewModel extends AndroidViewModel {
     }
 
     public void setInmueble(Bundle b) {
-        iMutable.setValue((Inmueble)b.getSerializable("realEstate"));
+        iMutable.setValue((Inmueble) b.getSerializable("realEstate"));
     }
 
     public LiveData<Inmueble> getInmuebleMutable() {

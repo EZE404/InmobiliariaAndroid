@@ -12,7 +12,8 @@ public class Inquilino implements Serializable {
     private String email;
     private String telefono;
 
-    public Inquilino() {}
+    public Inquilino() {
+    }
 
     public Inquilino(int id, String dni, String nombre, String apellido, String direccionTrabajo, String email, String telefono) {
         this.id = id;

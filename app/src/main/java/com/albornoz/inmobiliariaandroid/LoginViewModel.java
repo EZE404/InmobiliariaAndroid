@@ -14,8 +14,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +29,9 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public LiveData<Integer> getErrorVisibility() {
-        if (error_visibility == null) { error_visibility = new MutableLiveData<>(); }
+        if (error_visibility == null) {
+            error_visibility = new MutableLiveData<>();
+        }
         return error_visibility;
     }
 
