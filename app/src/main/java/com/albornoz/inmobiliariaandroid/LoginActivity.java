@@ -42,11 +42,18 @@ public class LoginActivity extends AppCompatActivity {
                 .create(LoginViewModel.class);
         viewModel.getErrorVisibility().observe(this, visibility -> binding.textViewLoginError.setVisibility(visibility));
 
+        viewModel.getBtLoginEnabled().observe(this, enabled -> binding.buttonLogin.setEnabled(enabled));
         //Button listener
         binding.buttonLogin.setOnClickListener(view -> viewModel.login(
                 binding.editTextEmailAddress.getText().toString(),
                 binding.editTextPassword.getText().toString()
         ));
+
+        // Olvidé mi contraseña
+        binding.tvForgotPassword.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, RecoveryAccessActivity2.class);
+            startActivity(intent);
+        });
     }
 
     private void initializeSensor() {

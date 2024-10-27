@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
 import com.albornoz.inmobiliariaandroid.LoginActivity;
 import com.albornoz.inmobiliariaandroid.R;
+import com.albornoz.inmobiliariaandroid.request.ApiClientRetrofit;
 
 public class LogoutFragment extends Fragment {
 
@@ -29,6 +31,7 @@ public class LogoutFragment extends Fragment {
                 .setTitle("Logout")
                 .setMessage("¿Desea cerrar sesión?")
                 .setPositiveButton("Sí", (dialogInterface, i) -> {
+                    ApiClientRetrofit.eliminarToken(requireContext());
                     startActivity(new Intent(requireContext(), LoginActivity.class));
                     requireActivity().finish(); // Cierra la actividad actual para evitar regresar a ella
                 })

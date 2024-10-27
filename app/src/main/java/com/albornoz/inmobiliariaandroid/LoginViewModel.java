@@ -20,12 +20,18 @@ import retrofit2.Response;
 
 public class LoginViewModel extends AndroidViewModel {
 
+    private MutableLiveData<Boolean> btLoginEnabled = new MutableLiveData<>();
     private MutableLiveData<Integer> error_visibility;
     private Context context;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
         this.context = application.getApplicationContext();
+        btLoginEnabled.setValue(true);
+    }
+
+    public MutableLiveData<Boolean> getBtLoginEnabled() {
+        return btLoginEnabled;
     }
 
     public LiveData<Integer> getErrorVisibility() {
@@ -36,14 +42,15 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void login(String email, String password) {
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(context, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
+            return;
+        }
         ApiClientRetrofit.InmobiliariaService service = ApiClientRetrofit.getInmobiliariaService(context);
 
-        // Llamada al metodo login en la interfaz de la API
-        //RequestBody emailBody = RequestBody.create(MediaType.parse("multipart/form-data"), email);
-        //RequestBody passBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
-        //Call<String> call = service.login2(emailBody, passBody);
+        btLoginEnabled.setValue(false);
         Call<String> call = service.login(email, password);
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -59,15 +66,17 @@ public class LoginViewModel extends AndroidViewModel {
                 } else {
                     // Manejar un login fallido (credenciales incorrectas)
                     Log.d("LoginViewModel", "Login fallido: " + response.message());
-                    Toast.makeText(context, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Error en la petición", Toast.LENGTH_LONG).show();
+                    btLoginEnabled.setValue(true);
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 // Manejar el error en la solicitud
-                Log.d("LoginViewModel", "Error en la solicitud: " + t.getMessage());
-                Toast.makeText(context, "Error en la solicitud", Toast.LENGTH_SHORT).show();
+                Log.d("LoginViewModel", "Error en el servidor: " + t.getMessage());
+                Toast.makeText(context, "Error en el servidor", Toast.LENGTH_LONG).show();
+                btLoginEnabled.setValue(true);
             }
         });
     }

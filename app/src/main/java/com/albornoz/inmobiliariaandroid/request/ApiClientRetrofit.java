@@ -29,6 +29,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -164,23 +165,35 @@ public class ApiClientRetrofit {
         // Elimina el token de SharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("token");
-        editor.apply(); // Aplica los cambios de forma asíncrona
+        //editor.apply(); // Aplica los cambios de forma asíncrona
+        editor.commit(); // Aplica los cambios de forma síncrona
     }
 
     // Interfaz InmobiliariaService que define los endpoints de la API.
     public interface InmobiliariaService {
 
-        // Login para obtener el token JWT enviando email y contraseña
+        // Login y recuperación de contraseña
         @POST("propietarios/login")
         @FormUrlEncoded
         Call<String> login(@Field("Usuario") String email, @Field("Clave") String pass);
 
         @Multipart
         @POST("propietarios/login")
+            // no lo estoy usando. fue prueba de multipart
         Call<String> login2(
                 @Part("Usuario") RequestBody email,
                 @Part("Clave") RequestBody pass
         );
+
+        @POST("propietarios/enviartokenrecuperacion")
+        @FormUrlEncoded
+        Call<Void> enviarTokenRecuperacion(@Field("email") String email);
+
+        @POST("propietarios/cambiarclavecontoken")
+        @FormUrlEncoded
+        Call<Void> cambiarClaveConToken(
+                @Header("Authorization") String bearerToken,
+                @Field("nuevaClave") String pass);
 
         // CRUD para Propietarios
         @GET("propietarios")
