@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
                 .create(LoginViewModel.class);
         viewModel.getErrorVisibility().observe(this, visibility -> binding.textViewLoginError.setVisibility(visibility));
-
+        viewModel.getErrorText().observe(this, text -> binding.textViewLoginError.setText(text));
         viewModel.getBtLoginEnabled().observe(this, enabled -> binding.buttonLogin.setEnabled(enabled));
         //Button listener
         binding.buttonLogin.setOnClickListener(view -> viewModel.login(
