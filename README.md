@@ -1,0 +1,18 @@
+# InmobiliariaAndroid
+> Back-end en .NET -> [InmobiliariaAlbornoz](https://github.com/EZE404/InmobiliariaAlbornoz/tree/lab3-dev)
+
+![Permiso llamada](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_215614.png)
+![Login](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_215646.png)
+![Recuperar acceso](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_215710.png)
+![Mapa](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220008.png)
+![Panel Lateral](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220020.png)
+![Perfil](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220132.png)
+![Contraseña](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220145.png)
+![Inmuebles](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220211.png)
+![Detalles de Inmueble](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220255.png)
+![Permiso a Galería](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220348.png)
+![Nuevo Inmueble](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220455.png)
+![Detalles De Contrato](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220527.png)
+![Pagos de Contrato](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220545.png)
+![Detalles de Inquilino](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220602.png)
+![Logout](https://github.com/EZE404/InmobiliariaAndroid/blob/retrofit-alpha/snapshots/Screenshot_20241027_220637.png)
